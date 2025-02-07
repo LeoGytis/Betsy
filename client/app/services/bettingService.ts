@@ -8,21 +8,6 @@ interface PlaceBetResponse {
   winAmount: number | null;
 }
 
-// export const placeBet = async (amount: number) => {
-//   return fetch(`${BASE_URL}/bet`, {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({ amount }),
-//   }).then((res) => {
-//     if (!res.ok) {
-//       return res.json().then((data) => {
-//         throw new Error(data.message || "Failed to place bet");
-//       });
-//     }
-//     return res.json();
-//   });
-// };
-
 export const placeBet = (amount: number): Promise<PlaceBetResponse> => {
   return apiRequest("/bet", {
     method: "POST",
