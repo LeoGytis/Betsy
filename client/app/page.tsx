@@ -1,5 +1,4 @@
 "use client";
-
 import NavBar from "./components/NavBar";
 import PlayerCard from "./components/PlayerCard";
 
