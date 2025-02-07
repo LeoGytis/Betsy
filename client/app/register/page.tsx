@@ -24,7 +24,6 @@ const RegisterForm: React.FC = () => {
     resolver: zodResolver(registerSchema),
   });
 
-  // Handle form submission
   const onSubmit = (data: RegisterFormData) => {
     setLoading(true);
     setMessage("");
