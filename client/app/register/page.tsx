@@ -1,7 +1,9 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { loginUser } from "../services/loginUserService";
 import { registerUser } from "../services/registerUserService";
 import { registerSchema } from "../utils/validationSchemas";
 
@@ -13,6 +15,7 @@ interface RegisterFormData {
 }
 
 const RegisterForm: React.FC = () => {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -30,6 +33,8 @@ const RegisterForm: React.FC = () => {
     registerUser(formData)
       .then(() => {
         setMessage("Successfully registered a new user.");
+        loginUser({ email: formData.email, password: formData.password });
+        router.push("/");
       })
       .catch((error: { message: string }) => {
         setMessage(error.message);
