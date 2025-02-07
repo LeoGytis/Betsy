@@ -1,13 +1,10 @@
 "use client";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { placeBet } from "../services/bettingService";
-import { loginSchema } from "../utils/validationSchemas";
 
 interface BettingFormData {
-  bet: number;
-  password: string;
+  amount: number;
 }
 
 const Betting = () => {
@@ -17,18 +14,17 @@ const Betting = () => {
   const {
     handleSubmit,
     formState: { errors },
-  } = useForm<BettingFormData>({
-    resolver: zodResolver(loginSchema),
-  });
+  } = useForm<BettingFormData>({});
 
   const onSubmit = (formData: BettingFormData) => {
     setLoading(true);
     setMessage("");
-    placeBet(formData)
+    placeBet(formData.amount)
       .then(() => {
-        setMessage("Welcome to Betsy!");
+        setMessage("BET was placed");
       })
       .catch((error: { message: string }) => {
+        console.log("🔥 :: error ::", error);
         setMessage(error.message);
       })
       .finally(() => {
@@ -49,12 +45,12 @@ const Betting = () => {
         <div className="mb-4">
           <input
             id="bet"
-            type="bet"
+            type="number"
             placeholder="Enter your bet"
             className="w-full px-4 py-2 border border-gray-300 rounded-md"
           />
-          {errors.password && (
-            <p className="text-red-500 text-xs">{errors.password.message}</p>
+          {errors.amount && (
+            <p className="text-red-500 text-xs">{errors.amount.message}</p>
           )}
         </div>
 

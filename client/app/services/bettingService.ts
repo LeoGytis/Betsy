@@ -1,24 +1,39 @@
 import { BASE_URL } from "../utils/constants";
+import apiRequest from "./apiService";
 
-export const placeBet = async (amount: number, walletBalance: number) => {
-  if (amount < 1 || amount > walletBalance) {
-    throw new Error(
-      "Invalid bet amount: Minimum €1.00 and cannot exceed wallet balance"
-    );
-  }
+interface PlaceBetResponse {
+  transactionId: string;
+  currency: string;
+  balance: number | null;
+  winAmount: number | null;
+}
 
-  return fetch(`${BASE_URL}/bet`, {
+// export const placeBet = async (amount: number) => {
+//   return fetch(`${BASE_URL}/bet`, {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({ amount }),
+//   }).then((res) => {
+//     if (!res.ok) {
+//       return res.json().then((data) => {
+//         throw new Error(data.message || "Failed to place bet");
+//       });
+//     }
+//     return res.json();
+//   });
+// };
+
+export const placeBet = (amount: number): Promise<PlaceBetResponse> => {
+  return apiRequest("/bet", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ amount }),
-  }).then((res) => {
-    if (!res.ok) {
-      return res.json().then((data) => {
-        throw new Error(data.message || "Failed to place bet");
-      });
-    }
-    return res.json();
-  });
+  })
+    .then((data) => {
+      return data;
+    })
+    .catch((error: { message: string }) => {
+      throw new Error(error.message || "Failed to bet");
+    });
 };
 
 export const listBets = async (

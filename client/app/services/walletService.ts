@@ -1,19 +1,5 @@
 import { BASE_URL } from "../utils/constants";
 
-export const displayBalance = async () => {
-  return fetch(`${BASE_URL}/my-balance`, {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  }).then((res) => {
-    if (!res.ok) {
-      return res.json().then((data) => {
-        throw new Error(data.message || "Failed to fetch wallet balance");
-      });
-    }
-    return res.json();
-  });
-};
-
 export const listTransactions = async (
   type?: string,
   transactionId?: string,

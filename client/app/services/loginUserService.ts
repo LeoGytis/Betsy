@@ -22,7 +22,6 @@ export const loginUser = ({
     body: JSON.stringify({ email, password }),
   })
     .then((data) => {
-      console.log("🔥 :: data ::", data);
       localStorage.setItem("token", data.accessToken);
       return data;
     })
