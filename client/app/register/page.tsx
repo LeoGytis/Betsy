@@ -1,9 +1,6 @@
 "use client";
 
-import NavBar from "./components/NavBar";
-import PlayerCard from "./components/PlayerCard";
-
-const HomePage: React.FC = () => {
+const RegisterPage: React.FC = () => {
   return (
     <div className="mx-auto max-w-screen-xl p-8 md:p-12 lg:p-20 lg:py-12">
       <NavBar />
@@ -14,4 +11,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+export default RegisterPage;
