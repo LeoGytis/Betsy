@@ -13,11 +13,16 @@ export const loginUser = async (email: string, password: string) => {
   });
 };
 
-export const registerUser = async (email: string, password: string) => {
-  return fetch("/api/auth/register", {
+export const registerUser = async (
+  name: string,
+  email: string,
+  password: string,
+  confirmPassword: string
+) => {
+  return fetch("http://localhost:3000/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ name, email, password, confirmPassword }),
   }).then((res) => {
     if (!res.ok) {
       return res.json().then((data) => {

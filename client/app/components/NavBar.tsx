@@ -1,36 +1,24 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { loginUser, registerUser } from "../services/authService";
+import { loginUser } from "../services/authService";
 
 const NavBar: React.FC = () => {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const handleLogin = () => {
     setLoading(true);
     loginUser("user@example.com", "password")
       .then((res) => {
-        alert(res.message); // Handle successful login
+        alert(res.message);
       })
       .catch((error: { message: string }) => {
-        alert(error.message); // Handle login error
+        alert(error.message);
       })
       .finally(() => {
-        setLoading(false); // Reset loading state
-      });
-  };
-
-  const handleRegister = () => {
-    setLoading(true);
-    registerUser("newuser@example.com", "password")
-      .then((res) => {
-        alert(res.message); // Handle successful registration
-      })
-      .catch((error: { message: string }) => {
-        alert(error.message); // Handle registration error
-      })
-      .finally(() => {
-        setLoading(false); // Reset loading state
+        setLoading(false);
       });
   };
 
@@ -47,7 +35,7 @@ const NavBar: React.FC = () => {
         </button>
         <button
           className="p-4 border border-violet-800"
-          onClick={handleRegister}
+          onClick={() => router.push("/register")}
           disabled={loading}
         >
           {loading ? "Registering..." : "Register"}

@@ -12,7 +12,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={font.className}>{children}</body>
+      <body
+        className={`${font.className} mx-auto max-w-screen-xl p-8 md:p-12 lg:p-20 lg:py-12`}
+      >
+        {children}
+      </body>
     </html>
   );
 }

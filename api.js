@@ -2,9 +2,13 @@ const express = require("express");
 const { faker } = require("@faker-js/faker");
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+const cors = require("cors");
 
 const app = express();
 const port = 3000;
+
+// Enable CORS for all origins
+app.use(cors());
 
 app.use(express.json());
 
@@ -66,8 +70,7 @@ app.post("/bet", (req, res) => {
   const { amount } = req.body;
   const authorization = req.headers.authorization;
 
-  if (!authorization)
-    return res.status(401).json({ message: "Invalid token" });
+  if (!authorization) return res.status(401).json({ message: "Invalid token" });
 
   const player = players.find(
     (player) => player.accessToken === authorization.replace("Bearer ", "")
@@ -123,8 +126,7 @@ app.get("/my-bets", (req, res) => {
   const { id, status, page, limit } = req.query;
   const authorization = req.headers.authorization;
 
-  if (!authorization)
-    return res.status(401).json({ message: "Invalid token" });
+  if (!authorization) return res.status(401).json({ message: "Invalid token" });
 
   if (!page || !limit)
     return res.status(400).json({ message: "Invalid parameters" });
@@ -157,8 +159,7 @@ app.delete("/my-bet/:id", (req, res) => {
   const { id } = req.params;
   const authorization = req.headers.authorization;
 
-  if (!authorization)
-    return res.status(401).json({ message: "Invalid token" });
+  if (!authorization) return res.status(401).json({ message: "Invalid token" });
 
   const player = players.find(
     (player) => player.accessToken === authorization.replace("Bearer ", "")
@@ -197,8 +198,7 @@ app.get("/my-transactions", (req, res) => {
   const { id, type, page, limit } = req.query;
   const authorization = req.headers.authorization;
 
-  if (!authorization)
-    return res.status(401).json({ message: "Invalid token" });
+  if (!authorization) return res.status(401).json({ message: "Invalid token" });
 
   if (!page || !limit)
     return res.status(400).json({ message: "Invalid parameters" });
@@ -247,7 +247,7 @@ app.use(
 );
 
 app.listen(port, () =>
-  console.log(`Listening: http://localhost:${port}! ✨👋🌍`)
+  console.log(`Listening: http://localhost:${port} ! ✨👋🌍`)
 );
 
 /**

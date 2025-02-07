@@ -1,10 +1,12 @@
 "use client";
-
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { registerUser } from "../services/authService";
+import { registerSchema } from "../utils/validationSchemas";
 
 interface RegisterFormData {
+  name: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -14,25 +16,21 @@ const RegisterForm: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  // Initialize React Hook Form
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<RegisterFormData>();
+  } = useForm<RegisterFormData>({
+    resolver: zodResolver(registerSchema),
+  });
 
   // Handle form submission
   const onSubmit = (data: RegisterFormData) => {
+    console.log("🔥 :: data ::", data);
     setLoading(true);
     setMessage(""); // Reset message before registering
 
-    if (data.password !== data.confirmPassword) {
-      setMessage("Passwords do not match!");
-      setLoading(false);
-      return;
-    }
-
-    registerUser(data.email, data.password)
+    registerUser(data.name, data.email, data.password, data.confirmPassword)
       .then((res) => {
         setMessage(res.message);
       })
@@ -46,14 +44,36 @@ const RegisterForm: React.FC = () => {
 
   return (
     <div className="flex justify-center items-center border border-violet-500 rounded p-6">
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-sm">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-full max-w-sm text-black"
+      >
         <h2 className="text-center text-xl font-bold mb-4">Register</h2>
+
+        <div className="mb-4">
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Name
+          </label>
+          <input
+            id="name"
+            type="text"
+            placeholder="Enter your name"
+            {...register("name")}
+            className="w-full px-4 py-2 border border-gray-300 rounded-md"
+          />
+          {errors.name && (
+            <p className="text-red-500 text-xs">{errors.name.message}</p>
+          )}
+        </div>
 
         {/* Email Input */}
         <div className="mb-4">
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-black"
           >
             Email
           </label>
@@ -61,11 +81,8 @@ const RegisterForm: React.FC = () => {
             id="email"
             type="email"
             placeholder="Enter your email"
-            {...register("email", {
-              required: "Email is required",
-              pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i,
-            })}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md"
+            {...register("email")}
+            className="w-full px-4 py-2 border border-gray-300 rounded-md text-black"
           />
           {errors.email && (
             <p className="text-red-500 text-xs">{errors.email.message}</p>
@@ -84,13 +101,7 @@ const RegisterForm: React.FC = () => {
             id="password"
             type="password"
             placeholder="Enter your password"
-            {...register("password", {
-              required: "Password is required",
-              minLength: {
-                value: 6,
-                message: "Password must be at least 6 characters",
-              },
-            })}
+            {...register("password")}
             className="w-full px-4 py-2 border border-gray-300 rounded-md"
           />
           {errors.password && (
@@ -110,11 +121,7 @@ const RegisterForm: React.FC = () => {
             id="confirmPassword"
             type="password"
             placeholder="Confirm your password"
-            {...register("confirmPassword", {
-              required: "Confirm Password is required",
-              validate: (value) =>
-                value === watch("password") || "Passwords do not match",
-            })}
+            {...register("confirmPassword")}
             className="w-full px-4 py-2 border border-gray-300 rounded-md"
           />
           {errors.confirmPassword && (
