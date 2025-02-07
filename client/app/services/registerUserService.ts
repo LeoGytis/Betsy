@@ -1,4 +1,4 @@
-import apiRequest from "./apiService"; // Import the apiRequest function
+import apiRequest from "./apiService";
 
 interface RegisterUserParams {
   name: string;

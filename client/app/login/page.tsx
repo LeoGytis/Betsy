@@ -26,8 +26,8 @@ const Login = () => {
     setLoading(true);
     setMessage("");
     loginUser(formData)
-      .then((res) => {
-        // setMessage(res.message);
+      .then(() => {
+        setMessage("Welcome to Betsy!");
       })
       .catch((error: { message: string }) => {
         setMessage(error.message);

@@ -28,8 +28,8 @@ const RegisterForm: React.FC = () => {
     setLoading(true);
     setMessage("");
     registerUser(formData)
-      .then((res) => {
-        // setMessage(res.message);
+      .then(() => {
+        setMessage("Successfully registered a new user.");
       })
       .catch((error: { message: string }) => {
         setMessage(error.message);
