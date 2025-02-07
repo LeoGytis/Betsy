@@ -3,6 +3,7 @@
     "cors": "^2.8.5",
     "express": "^4.21.1",
     "faker": "^5.5.3",
+    "react-hook-form": "^7.54.2",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
   },
