@@ -2,7 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { registerUser } from "../services/authService";
+import { registerUserNew } from "../services/registerUserService";
 import { registerSchema } from "../utils/validationSchemas";
 
 interface RegisterFormData {
@@ -24,10 +24,10 @@ const RegisterForm: React.FC = () => {
     resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = (data: RegisterFormData) => {
+  const onSubmit = (formData: RegisterFormData) => {
     setLoading(true);
     setMessage("");
-    registerUser(data.name, data.email, data.password, data.confirmPassword)
+    registerUserNew(formData)
       .then((res) => {
         setMessage(res.message);
       })

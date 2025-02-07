@@ -2,7 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { loginUser } from "../services/authService";
+import { loginUserNew } from "../services/loginUserService";
 import { loginSchema } from "../utils/validationSchemas";
 
 interface LoginFormData {
@@ -22,10 +22,10 @@ const Login = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = (data: LoginFormData) => {
+  const onSubmit = (formData: LoginFormData) => {
     setLoading(true);
     setMessage("");
-    loginUser(data.email, data.password)
+    loginUserNew(formData)
       .then((res) => {
         setMessage(res.message);
       })

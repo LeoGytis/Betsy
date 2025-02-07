@@ -31,6 +31,9 @@ export const loginUser = async (email: string, password: string) => {
         throw new Error(data.error || "Login failed");
       });
     }
-    return res.json();
+    return res.json().then((data) => {
+      localStorage.setItem("token", data.token);
+      return data;
+    });
   });
 };
