@@ -12,7 +12,7 @@ const NavBar: React.FC = () => {
       .then((res) => {
         alert(res.message); // Handle successful login
       })
-      .catch((error: any) => {
+      .catch((error: { message: string }) => {
         alert(error.message); // Handle login error
       })
       .finally(() => {
@@ -26,7 +26,7 @@ const NavBar: React.FC = () => {
       .then((res) => {
         alert(res.message); // Handle successful registration
       })
-      .catch((error: any) => {
+      .catch((error: { message: string }) => {
         alert(error.message); // Handle registration error
       })
       .finally(() => {
