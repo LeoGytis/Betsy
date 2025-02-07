@@ -1,5 +1,6 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { loginUser } from "../services/authService";
 import { loginSchema } from "../utils/validationSchemas";
@@ -10,6 +11,9 @@ interface LoginFormData {
 }
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -18,19 +22,34 @@ const Login = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = async (data: LoginFormData) => {
-    console.log("🔥 :: data ::", data);
-    loginUser(data.email, data.password);
+  const onSubmit = (data: LoginFormData) => {
+    setLoading(true);
+    setMessage("");
+    loginUser(data.email, data.password)
+      .then((res) => {
+        setMessage(res.message);
+      })
+      .catch((error: { message: string }) => {
+        setMessage(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
-    <div style={{ width: "300px", margin: "0 auto" }}>
-      <h2 className="text-center text-xl font-bold mb-4">Login</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="text-black">
+    <div className="flex justify-center items-center border border-violet-500 rounded p-6">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-full max-w-sm text-black"
+      >
+        <h2 className="text-center text-xl font-bold mb-4">Login</h2>
+
+        {/* Email Input */}
         <div className="mb-4">
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-white"
+            className="block text-sm font-medium text-gray-700"
           >
             Email
           </label>
@@ -46,6 +65,7 @@ const Login = () => {
           )}
         </div>
 
+        {/* Password Input */}
         <div className="mb-4">
           <label
             htmlFor="password"
@@ -65,14 +85,19 @@ const Login = () => {
           )}
         </div>
 
+        {/* Login Button */}
         <div className="mb-4">
           <button
             type="submit"
             className="w-full px-4 py-2 bg-violet-500 text-white rounded-md"
+            disabled={loading}
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
         </div>
+
+        {/* Error or Success Message */}
+        {message && <p className="text-center text-red-500">{message}</p>}
       </form>
     </div>
   );
