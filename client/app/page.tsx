@@ -1,4 +1,5 @@
 "use client";
+import BetsList from "./components/BetsList";
 import Betting from "./components/Betting";
 import NavBar from "./components/NavBar";
 
@@ -8,6 +9,7 @@ const HomePage: React.FC = () => {
       <NavBar />
       <div className="p-36 pt-8">
         <Betting />
+        <BetsList />
       </div>
     </div>
   );

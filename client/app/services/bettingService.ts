@@ -21,13 +21,13 @@ export const placeBet = (amount: number): Promise<PlaceBetResponse> => {
     });
 };
 
-export const listBets = async (
+export const getBetsList = async (
   status?: string,
   betId?: string,
   page: number = 1,
-  pageSize: number = 10
+  limit: number = 100
 ) => {
-  let url = `${BASE_URL}/my-bets?page=${page}&pageSize=${pageSize}`;
+  let url = `/my-bets?page=${page}&limit=${limit}`;
 
   if (status) {
     url += `&status=${status}`;
@@ -37,19 +37,10 @@ export const listBets = async (
     url += `&id=${betId}`;
   }
 
-  return fetch(url, {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  }).then((res) => {
-    if (!res.ok) {
-      return res.json().then((data) => {
-        throw new Error(data.message || "Failed to fetch bets");
-      });
-    }
-    return res.json();
+  return apiRequest(url).then((data) => {
+    return Array.isArray(data) ? data : [];
   });
 };
-
 export const cancelBet = async (betId: string) => {
   return fetch(`${BASE_URL}/my-bet/${betId}`, {
     method: "DELETE",

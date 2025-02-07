@@ -67,7 +67,6 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/bet", (req, res) => {
-  console.log("🔥 :: bet ::", bet);
   const { amount } = req.body;
   const authorization = req.headers.authorization;
 

@@ -22,7 +22,7 @@ const Betting = () => {
     setMessage("");
     placeBet(formData.amount)
       .then(() => {
-        setMessage("BET was placed");
+        setMessage(`You have bet ${formData.amount}`);
       })
       .catch((error: { message: string }) => {
         console.log("🔥 :: error ::", error);
