@@ -1,4 +1,4 @@
-import apiRequest from "./apiService"; // Import the apiRequest function
+import apiRequest from "./apiService";
 
 interface LoginUserParams {
   email: string;
@@ -22,6 +22,8 @@ export const loginUser = ({
     body: JSON.stringify({ email, password }),
   })
     .then((data) => {
+      console.log("🔥 :: data ::", data);
+      localStorage.setItem("token", data.accessToken);
       return data;
     })
     .catch((error: { message: string }) => {

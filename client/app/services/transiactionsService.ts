@@ -1,3 +1,5 @@
+import apiRequest from "./apiService";
+
 export const fetchTransactions = async (id, type, page, limit) => {
   try {
     const response = await apiRequest("/my-transactions", {
