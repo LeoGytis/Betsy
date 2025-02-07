@@ -1,6 +1,7 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { loginUser } from "../services/authService";
 import { loginSchema } from "../utils/validationSchemas";
 
 interface LoginFormData {
@@ -19,6 +20,7 @@ const Login = () => {
 
   const onSubmit = async (data: LoginFormData) => {
     console.log("🔥 :: data ::", data);
+    loginUser(data.email, data.password);
   };
 
   return (
