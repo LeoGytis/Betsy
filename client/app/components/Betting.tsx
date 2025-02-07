@@ -12,6 +12,7 @@ const Betting = () => {
   const [message, setMessage] = useState("");
 
   const {
+    register,
     handleSubmit,
     formState: { errors },
   } = useForm<BettingFormData>({});
@@ -44,10 +45,14 @@ const Betting = () => {
 
         <div className="mb-4">
           <input
-            id="bet"
+            id="amount"
             type="number"
             placeholder="Enter your bet"
             className="w-full px-4 py-2 border border-gray-300 rounded-md"
+            {...register("amount", {
+              required: "Amount is required",
+              min: { value: 1, message: "Minimum bet is 1" },
+            })}
           />
           {errors.amount && (
             <p className="text-red-500 text-xs">{errors.amount.message}</p>
