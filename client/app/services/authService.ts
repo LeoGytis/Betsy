@@ -1,10 +1,12 @@
+import { BASE_URL } from "../utils/constants";
+
 export const registerUser = async (
   name: string,
   email: string,
   password: string,
   confirmPassword: string
 ) => {
-  return fetch("http://localhost:3000/register", {
+  return fetch(`${BASE_URL}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name, email, password, confirmPassword }),
@@ -19,7 +21,7 @@ export const registerUser = async (
 };
 
 export const loginUser = async (email: string, password: string) => {
-  return fetch("http://localhost:3000/login", {
+  return fetch(`${BASE_URL}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),

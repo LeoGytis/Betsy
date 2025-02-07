@@ -1,3 +1,5 @@
+import { BASE_URL } from "../utils/constants";
+
 export const placeBet = async (amount: number, walletBalance: number) => {
   if (amount < 1 || amount > walletBalance) {
     throw new Error(
@@ -5,7 +7,7 @@ export const placeBet = async (amount: number, walletBalance: number) => {
     );
   }
 
-  return fetch("http://localhost:3000/bet", {
+  return fetch(`${BASE_URL}/bet`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ amount }),
@@ -25,7 +27,7 @@ export const listBets = async (
   page: number = 1,
   pageSize: number = 10
 ) => {
-  let url = `http://localhost:3000/my-bets?page=${page}&pageSize=${pageSize}`;
+  let url = `${BASE_URL}/my-bets?page=${page}&pageSize=${pageSize}`;
 
   if (status) {
     url += `&status=${status}`;
@@ -49,7 +51,7 @@ export const listBets = async (
 };
 
 export const cancelBet = async (betId: string) => {
-  return fetch(`http://localhost:3000/my-bet/${betId}`, {
+  return fetch(`${BASE_URL}/my-bet/${betId}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
   }).then((res) => {

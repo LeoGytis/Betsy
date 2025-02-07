@@ -1,5 +1,7 @@
+import { BASE_URL } from "../utils/constants";
+
 export const displayBalance = async () => {
-  return fetch("http://localhost:3000/my-balance", {
+  return fetch(`${BASE_URL}/my-balance`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   }).then((res) => {
@@ -18,7 +20,7 @@ export const listTransactions = async (
   page: number = 1,
   pageSize: number = 10
 ) => {
-  let url = `http://localhost:3000/my-transactions?page=${page}&pageSize=${pageSize}`;
+  let url = `${BASE_URL}/my-transactions?page=${page}&pageSize=${pageSize}`;
 
   if (type) {
     url += `&type=${type}`;
