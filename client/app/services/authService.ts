@@ -26,7 +26,7 @@ export const registerUser = async (
   }).then((res) => {
     if (!res.ok) {
       return res.json().then((data) => {
-        throw new Error(data.error || "Registration failed");
+        throw new Error(data.message || "Registration failed");
       });
     }
     return res.json();

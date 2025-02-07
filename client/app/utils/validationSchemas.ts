@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-// Define your Zod validation schema
 export const registerSchema = z
   .object({
     name: z.string().min(1, "Name is required"),
@@ -12,8 +11,9 @@ export const registerSchema = z
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    path: ["passwordConfirmation"],
+    path: ["confirmPassword"],
     message: "Passwords must match.",
   });
 
-// type RegisterFormData = z.infer<typeof registerSchema>; // check this for future knowledge possible to tu as type
+// check this for future knowledge possible to use as type
+// type RegisterFormData = z.infer<typeof registerSchema>;

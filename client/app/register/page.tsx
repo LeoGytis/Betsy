@@ -26,10 +26,8 @@ const RegisterForm: React.FC = () => {
 
   // Handle form submission
   const onSubmit = (data: RegisterFormData) => {
-    console.log("🔥 :: data ::", data);
     setLoading(true);
-    setMessage(""); // Reset message before registering
-
+    setMessage("");
     registerUser(data.name, data.email, data.password, data.confirmPassword)
       .then((res) => {
         setMessage(res.message);
