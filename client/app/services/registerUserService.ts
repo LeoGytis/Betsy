@@ -7,12 +7,17 @@ interface RegisterUserParams {
   confirmPassword: string;
 }
 
-export const registerUserNew = ({
+export interface RegisterUserResponse {
+  id: string;
+  name: string;
+}
+
+export const registerUser = ({
   name,
   email,
   password,
   confirmPassword,
-}: RegisterUserParams): Promise<any> => {
+}: RegisterUserParams): Promise<RegisterUserResponse> => {
   return apiRequest("/register", {
     method: "POST",
     body: JSON.stringify({ name, email, password, confirmPassword }),

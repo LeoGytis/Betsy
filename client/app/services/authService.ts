@@ -1,6 +1,6 @@
 import { BASE_URL } from "../utils/constants";
 
-export const registerUser = async (
+export const registerUserOld = async (
   name: string,
   email: string,
   password: string,
@@ -20,7 +20,7 @@ export const registerUser = async (
   });
 };
 
-export const loginUser = async (email: string, password: string) => {
+export const loginUserOld = async (email: string, password: string) => {
   return fetch(`${BASE_URL}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

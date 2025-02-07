@@ -2,7 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { registerUserNew } from "../services/registerUserService";
+import { registerUser } from "../services/registerUserService";
 import { registerSchema } from "../utils/validationSchemas";
 
 interface RegisterFormData {
@@ -27,9 +27,9 @@ const RegisterForm: React.FC = () => {
   const onSubmit = (formData: RegisterFormData) => {
     setLoading(true);
     setMessage("");
-    registerUserNew(formData)
+    registerUser(formData)
       .then((res) => {
-        setMessage(res.message);
+        // setMessage(res.message);
       })
       .catch((error: { message: string }) => {
         setMessage(error.message);

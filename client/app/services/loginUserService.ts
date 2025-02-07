@@ -5,10 +5,18 @@ interface LoginUserParams {
   password: string;
 }
 
-export const loginUserNew = ({
+export interface LoginUserResponse {
+  id: string;
+  name: string;
+  balance: number;
+  currency: string;
+  accessToken: string;
+}
+
+export const loginUser = ({
   email,
   password,
-}: LoginUserParams): Promise<any> => {
+}: LoginUserParams): Promise<LoginUserResponse> => {
   return apiRequest("/login", {
     method: "POST",
     body: JSON.stringify({ email, password }),

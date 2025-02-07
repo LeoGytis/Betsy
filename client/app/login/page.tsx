@@ -2,7 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { loginUserNew } from "../services/loginUserService";
+import { loginUser } from "../services/loginUserService";
 import { loginSchema } from "../utils/validationSchemas";
 
 interface LoginFormData {
@@ -25,9 +25,9 @@ const Login = () => {
   const onSubmit = (formData: LoginFormData) => {
     setLoading(true);
     setMessage("");
-    loginUserNew(formData)
+    loginUser(formData)
       .then((res) => {
-        setMessage(res.message);
+        // setMessage(res.message);
       })
       .catch((error: { message: string }) => {
         setMessage(error.message);
