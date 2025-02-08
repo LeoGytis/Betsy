@@ -68,6 +68,7 @@ app.post("/login", (req, res) => {
 
 app.post("/bet", (req, res) => {
   const { amount } = req.body;
+  console.log("🔥 :: req.body ::", req.body);
   const authorization = req.headers.authorization;
 
   if (!authorization) return res.status(401).json({ message: "Invalid token" });
@@ -113,7 +114,7 @@ app.post("/bet", (req, res) => {
     createdAt: new Date(),
     winAmount: isWin ? amount * 2 : null,
   });
-
+  console.log("🔥 :: player.balance ::", player.balance);
   res.json({
     transactionId: betTransactionId,
     currency: "EUR",
