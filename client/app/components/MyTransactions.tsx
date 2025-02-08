@@ -35,7 +35,7 @@ const MyTransactions: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col space-y-4 p-4 border border-violet-500 rounded">
+    <div className="flex flex-col space-y-4 p-4 border border-violet-800 rounded">
       <h1 className="text-xl font-semibold mb-4">Bets List</h1>
       {bets.length === 0 ? (
         <div>No bets available</div>
@@ -43,17 +43,17 @@ const MyTransactions: React.FC = () => {
         bets.map((bet) => (
           <div
             key={bet.id}
-            className="flex justify-between items-center p-4 bg-black rounded-md shadow-md"
+            className="flex flex-col gap-2 bg-[#222222] border border-violet-500 rounded p-4"
           >
-            <div>
-              <span
-                className={`border rounded p-2 py-0 ${statusColor[bet.status]}`}
-              >
-                {bet.status}
-              </span>
-              <p>Amount: ${bet.amount}</p>
-              <p> Date: {moment(bet.date).format("HH:mm:ss")}</p>
-            </div>
+            <span
+              className={`w-fit border rounded p-2 py-0 ${
+                statusColor[bet.status]
+              }`}
+            >
+              {bet.status}
+            </span>
+            <p>Amount: ${bet.amount}</p>
+            <p> Date: {moment(bet.date).format("HH:mm:ss")}</p>
           </div>
         ))
       )}

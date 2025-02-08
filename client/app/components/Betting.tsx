@@ -37,12 +37,12 @@ const Betting = () => {
   };
 
   return (
-    <div className="flex justify-center items-center border border-violet-500 rounded p-6">
+    <div className="flex justify-center items-center border border-violet-800 rounded p-6">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full flex flex-col gap-6 justify-center text-black"
+        className="w-full flex flex-col gap-6 justify-center items-center text-black"
       >
-        <h2 className="text-center text-xl font-bold mb-4 text-white">
+        <h2 className="text-center text-xl font-sembold text-violet-500">
           Place your bet
         </h2>
 
@@ -50,7 +50,7 @@ const Betting = () => {
           id="amount"
           type="number"
           placeholder="Enter your bet"
-          className="w-full px-4 py-2 border border-gray-300 rounded-md"
+          className="w-1/2 px-4 py-2 border border-gray-300 rounded-md"
           {...register("amount", {
             required: "Amount is required",
             min: { value: 1, message: "Minimum bet is 1" },
