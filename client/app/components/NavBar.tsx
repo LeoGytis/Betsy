@@ -9,7 +9,7 @@ const NavBar: React.FC = () => {
   return (
     <div className="flex justify-between items-center border border-violet-500 rounded p-4">
       <div>LOGO</div>
-      <div className="text-white"> Balance:{balance}</div>
+      <div className="text-white">Your balance: {balance}</div>
       <div>
         <button
           className="p-4 border border-violet-800 mx-2"

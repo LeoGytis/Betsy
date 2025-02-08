@@ -9,9 +9,7 @@ interface BettingFormData {
 }
 
 const Betting = () => {
-  const { balance, setBalance } = useBalance();
-  console.log("🔥 :: balance ::", balance);
-
+  const { setBalance } = useBalance();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
