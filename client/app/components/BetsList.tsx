@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getBetsList } from "../services/bettingService";
+import { deleteBet, getBetsList } from "../services/bettingService";
 
 interface Bet {
   id: string;
@@ -25,6 +25,16 @@ const BetsList: React.FC = () => {
       });
   }, []);
 
+  const handleDelete = (betId: string) => {
+    deleteBet(betId)
+      .then(() => {
+        setBets((prevBets) => prevBets.filter((bet) => bet.id !== betId));
+      })
+      .catch((error: { message: string }) => {
+        setError(error.message);
+      });
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -48,6 +58,12 @@ const BetsList: React.FC = () => {
             <p>Status: {bet.status}</p>
             <p>Amount: ${bet.amount}</p>
             <p>Date: {new Date(bet.date).toLocaleDateString()}</p>
+            <button
+              onClick={() => handleDelete(bet.id)}
+              className="mt-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+            >
+              Delete
+            </button>
           </div>
         ))
       )}

@@ -1,4 +1,3 @@
-import { BASE_URL } from "../utils/constants";
 import apiRequest from "./apiService";
 
 interface PlaceBetResponse {
@@ -38,20 +37,19 @@ export const getBetsList = async (
   }
 
   const data = await apiRequest(url);
-  console.log("🔥 :: data ::", data);
   return Array.isArray(data.data) ? data.data : [];
 };
 
-export const cancelBet = async (betId: string) => {
-  return fetch(`${BASE_URL}/my-bet/${betId}`, {
+export const deleteBet = async (betId: string) => {
+  const url = `/my-bet/${betId}`;
+
+  return apiRequest(url, {
     method: "DELETE",
-    headers: { "Content-Type": "application/json" },
-  }).then((res) => {
-    if (!res.ok) {
-      return res.json().then((data) => {
-        throw new Error(data.message || "Failed to cancel bet");
-      });
-    }
-    return res.json();
-  });
+  })
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      throw new Error(error.message || "Failed to cancel bet");
+    });
 };
