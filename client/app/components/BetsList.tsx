@@ -1,9 +1,10 @@
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { deleteBet, getBetsList } from "../services/bettingService";
+import { BetStatus, statusColor } from "../utils/constants";
 interface Bet {
   id: string;
-  status: string;
+  status: BetStatus;
   amount: number;
   date: string;
 }
@@ -55,7 +56,11 @@ const BetsList: React.FC = () => {
             className="flex justify-between items-center p-4 bg-black rounded-md shadow-md"
           >
             <div>
-              <p>Status: {bet.status}</p>
+              <span
+                className={`border rounded p-2 py-0 ${statusColor[bet.status]}`}
+              >
+                {bet.status}
+              </span>
               <p>Amount: ${bet.amount}</p>
               <p> Date: {moment(bet.date).format("HH:mm:ss")}</p>
             </div>

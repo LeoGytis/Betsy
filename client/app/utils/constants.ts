@@ -7,12 +7,12 @@ export enum BetStatus {
 }
 
 export enum Color {
-  Green = "text-green border border-green-500 p-2", // Win
-  Red = "bg-red-500", // Lost
-  Orange = "bg-orange-500", // Canceled
+  Green = "text-green-500 border-green-500", // Win
+  Red = "text-red-500 border-red-500", // Lost
+  Orange = "text-orange-500 border-orange-500", // Canceled
 }
 
-export const statusToColorMap: Record<BetStatus, Color> = {
+export const statusColor: Record<BetStatus, Color> = {
   [BetStatus.Win]: Color.Green,
   [BetStatus.Lost]: Color.Red,
   [BetStatus.Canceled]: Color.Orange,

@@ -1,13 +1,12 @@
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { getBetsList } from "../services/bettingService";
-import { BetStatus, statusToColorMap } from "../utils/constants";
+import { BetStatus, statusColor } from "../utils/constants";
 interface Bet {
   id: string;
-  // status: string;
+  status: BetStatus;
   amount: number;
   date: string;
-  status: BetStatus;
 }
 
 const MyTransactions: React.FC = () => {
@@ -47,12 +46,11 @@ const MyTransactions: React.FC = () => {
             className="flex justify-between items-center p-4 bg-black rounded-md shadow-md"
           >
             <div>
-              <div className="flex gap-2">
-                <span>Status:</span>
-                <span className={`${statusToColorMap[bet.status]}`}>
-                  {bet.status}
-                </span>
-              </div>
+              <span
+                className={`border rounded p-2 py-0 ${statusColor[bet.status]}`}
+              >
+                {bet.status}
+              </span>
               <p>Amount: ${bet.amount}</p>
               <p> Date: {moment(bet.date).format("HH:mm:ss")}</p>
             </div>
