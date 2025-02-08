@@ -42,10 +42,9 @@ const BetsList: React.FC = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
-  console.log("🔥 :: bets ::", bets);
 
   return (
-    <div className="flex flex-col space-y-4 p-4 border border-violet-500 rounded">
+    <div className="w-2/3 flex flex-col space-y-4 p-4 border border-violet-500 rounded">
       <h1 className="text-xl font-semibold mb-4">Bets List</h1>
       {bets.length === 0 ? (
         <div>No bets available</div>
