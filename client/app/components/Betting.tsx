@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useBalance } from "../hooks/useBalance";
 import { placeBet } from "../services/bettingService";
 
 interface BettingFormData {
@@ -8,7 +9,7 @@ interface BettingFormData {
 }
 
 const Betting = () => {
-  // const { setBalance } = useBalance();
+  const { setBalance } = useBalance();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -25,7 +26,7 @@ const Betting = () => {
       .then((res) => {
         setMessage(`You have made a bet of €${formData.amount}`);
         if (res.balance) {
-          // setBalance(res.balance);
+          setBalance(res.balance);
         }
       })
       .catch((error: { message: string }) => {
@@ -56,9 +57,6 @@ const Betting = () => {
             min: { value: 1, message: "Minimum bet is 1" },
           })}
         />
-        {errors.amount && (
-          <p className="text-red-500 text-xs">{errors.amount.message}</p>
-        )}
 
         <button
           type="submit"
@@ -68,8 +66,10 @@ const Betting = () => {
           BET
         </button>
 
-        {/* Error or Success Message */}
-        {message && <p className="text-center text-red-500">{message}</p>}
+        <div className="text-sm text-center text-red-500">
+          {errors.amount && <p>{errors.amount.message}</p>}
+          {message && <p>{message}</p>}
+        </div>
       </form>
     </div>
   );
