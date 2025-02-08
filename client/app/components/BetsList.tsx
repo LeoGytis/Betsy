@@ -53,16 +53,18 @@ const BetsList: React.FC = () => {
         bets.map((bet) => (
           <div
             key={bet.id}
-            className="flex flex-col p-4 bg-black rounded-md shadow-md"
+            className="flex justify-between items-center p-4 bg-black rounded-md shadow-md"
           >
-            <p>Status: {bet.status}</p>
-            <p>Amount: ${bet.amount}</p>
-            <p> Date: {moment(bet.date).format("HH:mm:ss")}</p>
+            <div>
+              <p>Status: {bet.status}</p>
+              <p>Amount: ${bet.amount}</p>
+              <p> Date: {moment(bet.date).format("HH:mm:ss")}</p>
+            </div>
             <button
               onClick={() => handleDelete(bet.id)}
-              className="mt-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+              className="mt-2 text-red-500 px-4 py-2 border border-red-500 rounded hover:text-red-300 hover:border-red-300"
             >
-              Delete
+              Cancel
             </button>
           </div>
         ))
