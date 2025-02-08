@@ -1,14 +1,10 @@
 "use client";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Quicksand } from "next/font/google";
 import "./globals.css";
-import { UserProvider } from "./hooks/useUser";
 
 const font = Quicksand({
   subsets: ["latin"],
 });
-
-const queryClient = new QueryClient();
 
 export default function RootLayout({
   children,
@@ -17,15 +13,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <QueryClientProvider client={queryClient}>
-        <UserProvider>
-          <body
-            className={`${font.className} mx-auto max-w-screen-xl p-8 md:p-12 lg:p-20 lg:py-12`}
-          >
-            {children}
-          </body>
-        </UserProvider>
-      </QueryClientProvider>
+      <body
+        className={`${font.className} mx-auto max-w-screen-xl p-8 md:p-12 lg:p-20 lg:py-12`}
+      >
+        {children}
+      </body>
     </html>
   );
 }

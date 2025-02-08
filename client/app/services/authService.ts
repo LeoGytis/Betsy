@@ -42,6 +42,7 @@ export const loginUser = ({
   })
     .then((data) => {
       localStorage.setItem("token", data.accessToken);
+      localStorage.setItem("userName", data.name);
       return data;
     })
     .catch((error: { message: string }) => {
