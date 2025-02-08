@@ -2,6 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useUser } from "../hooks/useUser";
 import { loginUser } from "../services/loginUserService";
 import { loginSchema } from "../utils/validationSchemas";
 
@@ -13,6 +14,7 @@ interface LoginFormData {
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const { setUser } = useUser();
 
   const {
     register,
@@ -26,7 +28,11 @@ const Login = () => {
     setLoading(true);
     setMessage("");
     loginUser(formData)
-      .then(() => {
+      .then((res) => {
+        if (res) {
+          console.log("🔥 :: res login ::", res);
+          setUser(res);
+        }
         setMessage("Welcome to Betsy!");
       })
       .catch((error: { message: string }) => {
