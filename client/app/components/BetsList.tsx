@@ -1,16 +1,18 @@
-import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { deleteBet, getBetsList } from "../services/bettingService";
 import { BetStatus, statusColor } from "../utils/constants";
+import { formatDateToTime } from "../utils/utils";
+
 interface Bet {
   id: string;
   status: BetStatus;
   amount: number;
-  date: string;
+  createdAt: Date;
 }
 
 const BetsList: React.FC = () => {
   const [bets, setBets] = useState<Bet[]>([]);
+  console.log("🔥 :: bets ::", bets);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -62,11 +64,11 @@ const BetsList: React.FC = () => {
                 {bet.status}
               </span>
               <p>Amount: ${bet.amount}</p>
-              <p> Date: {moment(bet.date).format("HH:mm:ss")}</p>
+              <p>Time: {formatDateToTime(bet.createdAt)}</p>
             </div>
             <button
               onClick={() => handleDelete(bet.id)}
-              className="mt-2 text-red-500 px-4 py-2 border border-red-500 rounded hover:text-red-300 hover:border-red-300"
+              className="mt-auto text-red-500 border border-red-500 rounded hover:text-red-800 hover:border-red-800 px-3 py-1"
             >
               Cancel
             </button>

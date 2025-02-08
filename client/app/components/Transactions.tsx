@@ -1,18 +1,18 @@
-import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { GiCrownedHeart } from "react-icons/gi";
 import { getBetsList } from "../services/bettingService";
 import { BetStatus, statusColor } from "../utils/constants";
+import { formatDateToTime } from "../utils/utils";
 
 interface Bet {
   id: string;
   status: BetStatus;
   amount: number;
-  date: string;
+  createdAt: Date;
 }
 
-const MyTransactions: React.FC = () => {
-  const [bets, setTransactions] = useState<Bet[]>([]);
+const Transactions: React.FC = () => {
+  const [transactions, setTransactions] = useState<Bet[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -38,25 +38,25 @@ const MyTransactions: React.FC = () => {
 
   return (
     <div className="flex flex-col space-y-4 p-4 border border-violet-800 rounded">
-      <h1 className="text-xl font-semibold mb-4">Bets List</h1>
-      {bets.length === 0 ? (
+      <h1 className="text-xl font-semibold mb-4">My Transactions</h1>
+      {transactions.length === 0 ? (
         <div>No bets available</div>
       ) : (
-        bets.map((bet) => (
+        transactions.map((transaction) => (
           <div
-            key={bet.id}
+            key={transaction.id}
             className="flex justify-between items-center bg-gray-900 border border-violet-500 rounded p-4"
           >
             <div className="flex flex-col gap-2">
               <span
                 className={`w-fit border rounded p-2 py-0 ${
-                  statusColor[bet.status]
+                  statusColor[transaction.status]
                 }`}
               >
-                {bet.status}
+                {transaction.status}
               </span>
-              <p>Amount: ${bet.amount}</p>
-              <p> Date: {moment(bet.date).format("HH:mm:ss")}</p>
+              <p>Amount: ${transaction.amount}</p>
+              <p>Time: {formatDateToTime(transaction.createdAt)}</p>
             </div>
             <GiCrownedHeart className="w-16 h-16 text-violet-500 text-opacity-50" />
           </div>
@@ -66,4 +66,4 @@ const MyTransactions: React.FC = () => {
   );
 };
 
-export default MyTransactions;
+export default Transactions;
