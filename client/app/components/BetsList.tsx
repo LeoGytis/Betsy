@@ -45,7 +45,7 @@ const BetsList: React.FC = () => {
   }
 
   return (
-    <div className="w-2/3 flex flex-col space-y-4 p-4 border border-violet-500 rounded">
+    <div className="w-2/3 flex flex-col space-y-4 p-4 border border-violet-800 rounded">
       <h1 className="text-xl font-semibold mb-4">Bets List</h1>
       {bets.length === 0 ? (
         <div>No bets available</div>

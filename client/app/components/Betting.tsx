@@ -24,9 +24,9 @@ const Betting = () => {
     placeBet(formData.amount)
       .then((res) => {
         setMessage(`You have made a bet of €${formData.amount}`);
-        // if (res.balance) {
-        //   setBalance(res.balance);
-        // }
+        if (res.balance) {
+          // setBalance(res.balance);
+        }
       })
       .catch((error: { message: string }) => {
         setMessage(error.message);
@@ -40,37 +40,33 @@ const Betting = () => {
     <div className="flex justify-center items-center border border-violet-500 rounded p-6">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-sm text-black"
+        className="w-full flex flex-col gap-6 justify-center text-black"
       >
         <h2 className="text-center text-xl font-bold mb-4 text-white">
           Place your bet
         </h2>
 
-        <div className="mb-4">
-          <input
-            id="amount"
-            type="number"
-            placeholder="Enter your bet"
-            className="w-full px-4 py-2 border border-gray-300 rounded-md"
-            {...register("amount", {
-              required: "Amount is required",
-              min: { value: 1, message: "Minimum bet is 1" },
-            })}
-          />
-          {errors.amount && (
-            <p className="text-red-500 text-xs">{errors.amount.message}</p>
-          )}
-        </div>
+        <input
+          id="amount"
+          type="number"
+          placeholder="Enter your bet"
+          className="w-full px-4 py-2 border border-gray-300 rounded-md"
+          {...register("amount", {
+            required: "Amount is required",
+            min: { value: 1, message: "Minimum bet is 1" },
+          })}
+        />
+        {errors.amount && (
+          <p className="text-red-500 text-xs">{errors.amount.message}</p>
+        )}
 
-        <div className="mb-4">
-          <button
-            type="submit"
-            className="w-full px-4 py-2 bg-violet-500 text-white rounded-md"
-            disabled={loading}
-          >
-            Bet
-          </button>
-        </div>
+        <button
+          type="submit"
+          className="w-1/2 px-4 py-2 bg-violet-800 text-white rounded-md"
+          disabled={loading}
+        >
+          BET
+        </button>
 
         {/* Error or Success Message */}
         {message && <p className="text-center text-red-500">{message}</p>}
