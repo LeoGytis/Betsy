@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useUser } from "../hooks/useUser";
-import { loginUser } from "../services/loginUserService";
+import { loginUser } from "../services/authService";
 import { UserLoginProps } from "../utils/constants";
 import { loginSchema } from "../utils/validationSchemas";
 
