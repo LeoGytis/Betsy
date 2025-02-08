@@ -26,6 +26,7 @@ const RegisterForm: React.FC = () => {
     registerUser(formData)
       .then(() => {
         setMessage("Successfully registered a new user.");
+        // for dev faster login
         // loginUser({ email: formData.email, password: formData.password });
         router.push("/");
       })

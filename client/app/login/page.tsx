@@ -1,16 +1,18 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useUser } from "../hooks/useUser";
+import { useBalance } from "../hooks/useBalance";
 import { loginUser } from "../services/authService";
 import { UserLoginProps } from "../utils/constants";
 import { loginSchema } from "../utils/validationSchemas";
 
 const Login = () => {
+  const router = useRouter();
+  const { setBalance } = useBalance();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const { setUser } = useUser();
 
   const {
     register,
@@ -25,10 +27,13 @@ const Login = () => {
     setMessage("");
     loginUser(formData)
       .then((res) => {
-        if (res) {
-          setUser(res);
+        console.log("🔥 :: res ::", res);
+        if (res.balance) {
+          console.log("🔥 :: res.balance ::", res.balance);
+          setBalance(res.balance);
         }
         setMessage("Welcome to Betsy!");
+        router.push("/");
       })
       .catch((error: { message: string }) => {
         setMessage(error.message);
@@ -46,7 +51,6 @@ const Login = () => {
       >
         <h2 className="text-center text-xl font-bold mb-4">Login</h2>
 
-        {/* Email Input */}
         <div className="mb-4">
           <label
             htmlFor="email"
@@ -66,7 +70,6 @@ const Login = () => {
           )}
         </div>
 
-        {/* Password Input */}
         <div className="mb-4">
           <label
             htmlFor="password"
@@ -86,7 +89,6 @@ const Login = () => {
           )}
         </div>
 
-        {/* Login Button */}
         <div className="mb-4">
           <button
             type="submit"
@@ -97,7 +99,6 @@ const Login = () => {
           </button>
         </div>
 
-        {/* Error or Success Message */}
         {message && <p className="text-center text-red-500">{message}</p>}
       </form>
     </div>

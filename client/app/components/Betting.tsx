@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useBalance } from "../hooks/useBalance";
 import { placeBet } from "../services/bettingService";
 
 interface BettingFormData {
@@ -9,9 +8,9 @@ interface BettingFormData {
 }
 
 const Betting = () => {
-  const { setBalance } = useBalance();
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
+  const [balance, setBalance] = useState<number>(1000);
 
   const {
     register,
@@ -19,12 +18,13 @@ const Betting = () => {
     formState: { errors },
   } = useForm<BettingFormData>({});
 
-  const onSubmit = (formData: BettingFormData) => {
+  const onSubmit = ({ amount }: BettingFormData) => {
     setLoading(true);
     setMessage("");
-    placeBet(formData.amount)
+    placeBet(amount)
       .then((res) => {
-        setMessage(`You have made a bet of €${formData.amount}`);
+        console.log("🔥 :: res ::", res);
+        setMessage(`You have made a bet of €${amount}`);
         if (res.balance) {
           setBalance(res.balance);
         }
@@ -43,6 +43,7 @@ const Betting = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-6 justify-center items-center text-black"
       >
+        <h1 className="text-white">BALNASS: {balance}</h1>
         <h2 className="text-center text-xl font-sembold text-violet-500">
           Place your bet
         </h2>

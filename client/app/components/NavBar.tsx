@@ -1,20 +1,17 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useBalance } from "../hooks/useBalance";
 import { getAuthenticatedUser } from "../utils/utils";
 
 const NavBar: React.FC = () => {
   const router = useRouter();
   const user = getAuthenticatedUser();
-  const { balance } = useBalance();
 
   return (
     <div className="flex justify-between items-center text-violet-500 border border-violet-800 rounded p-4">
       <div className="relative w-12 h-12">
         <Image src="/bet_logo.png" alt="logo" fill objectFit="cover" />
       </div>
-      <div className="text-white">Your balance: {balance}</div>
       {!user ? (
         <div className="flex gap-2">
           <button
