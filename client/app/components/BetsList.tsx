@@ -1,6 +1,6 @@
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { deleteBet, getBetsList } from "../services/bettingService";
-
 interface Bet {
   id: string;
   status: string;
@@ -42,6 +42,7 @@ const BetsList: React.FC = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
+  console.log("🔥 :: bets ::", bets);
 
   return (
     <div className="flex flex-col space-y-4 p-4 border border-violet-500 rounded">
@@ -54,10 +55,9 @@ const BetsList: React.FC = () => {
             key={bet.id}
             className="flex flex-col p-4 bg-black rounded-md shadow-md"
           >
-            <p className="font-bold">Bet ID: {bet.id}</p>
             <p>Status: {bet.status}</p>
             <p>Amount: ${bet.amount}</p>
-            <p>Date: {new Date(bet.date).toLocaleDateString()}</p>
+            <p> Date: {moment(bet.date).format("HH:mm:ss")}</p>
             <button
               onClick={() => handleDelete(bet.id)}
               className="mt-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
