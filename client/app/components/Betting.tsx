@@ -37,7 +37,7 @@ const Betting = () => {
   };
 
   return (
-    <div className="w-1/3 flex justify-center items-center border border-violet-500 rounded p-6">
+    <div className="flex justify-center items-center border border-violet-500 rounded p-6">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-sm text-black"

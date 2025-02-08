@@ -1,14 +1,21 @@
 import apiRequest from "./apiService";
 
-export const fetchTransactions = async (id, type, page, limit) => {
-  try {
-    const response = await apiRequest("/my-transactions", {
-      method: "GET",
-      body: JSON.stringify({ id, type, page, limit }),
-    });
-    return response;
-  } catch (error) {
-    console.error("Error fetching transactions:", error);
-    throw error;
+export const getMyTransactions = async (
+  status?: string,
+  betId?: string,
+  page: number = 1,
+  limit: number = 100
+) => {
+  let url = `/my-transactions?page=${page}&limit=${limit}`;
+
+  if (status) {
+    url += `&status=${status}`;
   }
+
+  if (betId) {
+    url += `&id=${betId}`;
+  }
+
+  const data = await apiRequest(url);
+  return Array.isArray(data.data) ? data.data : [];
 };
