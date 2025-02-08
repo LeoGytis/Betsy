@@ -23,7 +23,6 @@ export const registerUser = ({
     body: JSON.stringify({ name, email, password, confirmPassword }),
   })
     .then((data) => {
-      localStorage.setItem("token", data.token);
       return data;
     })
     .catch((error: { message: string }) => {

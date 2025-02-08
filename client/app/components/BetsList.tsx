@@ -34,7 +34,7 @@ const BetsList: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col space-y-4 p-4">
+    <div className="flex flex-col space-y-4 p-4 border border-violet-500 rounded">
       <h1 className="text-xl font-semibold mb-4">Bets List</h1>
       {bets.length === 0 ? (
         <div>No bets available</div>
@@ -42,7 +42,7 @@ const BetsList: React.FC = () => {
         bets.map((bet) => (
           <div
             key={bet.id}
-            className="flex flex-col p-4 bg-gray-100 rounded-md shadow-md"
+            className="flex flex-col p-4 bg-black rounded-md shadow-md"
           >
             <p className="font-bold">Bet ID: {bet.id}</p>
             <p>Status: {bet.status}</p>

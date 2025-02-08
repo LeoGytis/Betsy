@@ -37,10 +37,11 @@ export const getBetsList = async (
     url += `&id=${betId}`;
   }
 
-  return apiRequest(url).then((data) => {
-    return Array.isArray(data) ? data : [];
-  });
+  const data = await apiRequest(url);
+  console.log("🔥 :: data ::", data);
+  return Array.isArray(data.data) ? data.data : [];
 };
+
 export const cancelBet = async (betId: string) => {
   return fetch(`${BASE_URL}/my-bet/${betId}`, {
     method: "DELETE",

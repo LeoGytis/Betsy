@@ -30,7 +30,6 @@ const Betting = () => {
         }
       })
       .catch((error: { message: string }) => {
-        console.log("🔥 :: error ::", error);
         setMessage(error.message);
       })
       .finally(() => {
