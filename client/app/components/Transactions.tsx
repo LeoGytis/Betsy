@@ -38,7 +38,7 @@ const Transactions: React.FC = () => {
 
   return (
     <div className="flex flex-col space-y-4 p-4 border border-violet-800 rounded">
-      <h1 className="text-xl font-semibold mb-4">My Transactions</h1>
+      <h1 className="text-xl font-semibold">My Transactions</h1>
       {transactions.length === 0 ? (
         <div>No bets available</div>
       ) : (
@@ -58,7 +58,7 @@ const Transactions: React.FC = () => {
               <p>Amount: ${transaction.amount}</p>
               <p>Time: {formatDateToTime(transaction.createdAt)}</p>
             </div>
-            <GiCrownedHeart className="w-16 h-16 text-violet-500 text-opacity-50" />
+            <GiCrownedHeart className="w-16 h-16 text-violet-500 text-opacity-40" />
           </div>
         ))
       )}

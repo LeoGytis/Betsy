@@ -3,10 +3,13 @@ import { deleteBet, getBetsList } from "../services/bettingService";
 import { BetStatus, statusColor } from "../utils/constants";
 import { formatDateToTime } from "../utils/utils";
 
+import { FaDice } from "react-icons/fa6";
+
 interface Bet {
   id: string;
   status: BetStatus;
   amount: number;
+  winAmount: number;
   createdAt: Date;
 }
 
@@ -48,7 +51,7 @@ const BetsList: React.FC = () => {
 
   return (
     <div className="w-2/3 flex flex-col space-y-4 p-4 border border-violet-800 rounded">
-      <h1 className="text-xl font-semibold mb-4">Bets List</h1>
+      <h1 className="text-xl font-semibold">Bets</h1>
       {bets.length === 0 ? (
         <div>No bets available</div>
       ) : (
@@ -57,21 +60,29 @@ const BetsList: React.FC = () => {
             key={bet.id}
             className="flex justify-between items-center bg-gray-900 border border-violet-500 rounded p-4"
           >
-            <div>
+            <div className="flex flex-col gap-2">
               <span
-                className={`border rounded p-2 py-0 ${statusColor[bet.status]}`}
+                className={`w-fit border rounded p-2 py-0 ${
+                  statusColor[bet.status]
+                }`}
               >
                 {bet.status}
               </span>
-              <p>Amount: ${bet.amount}</p>
+              <p>Bet: ${bet.amount}</p>
+              {bet.status === "win" ? (
+                <p>Win Amount: ${bet.winAmount}</p>
+              ) : null}
               <p>Time: {formatDateToTime(bet.createdAt)}</p>
             </div>
-            <button
-              onClick={() => handleDelete(bet.id)}
-              className="mt-auto text-red-500 border border-red-500 rounded hover:text-red-800 hover:border-red-800 px-3 py-1"
-            >
-              Cancel
-            </button>
+            <div className="flex flex-col gap-2 items-center">
+              <FaDice className="w-12 h-12 text-violet-500 text-opacity-40" />
+              <button
+                onClick={() => handleDelete(bet.id)}
+                className="mt-auto text-red-500 border border-red-500 rounded hover:text-red-800 hover:border-red-800 px-3 py-1"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         ))
       )}
