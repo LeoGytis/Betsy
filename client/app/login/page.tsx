@@ -4,12 +4,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useUser } from "../hooks/useUser";
 import { loginUser } from "../services/loginUserService";
+import { UserLoginProps } from "../utils/constants";
 import { loginSchema } from "../utils/validationSchemas";
-
-interface LoginFormData {
-  email: string;
-  password: string;
-}
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -20,17 +16,16 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormData>({
+  } = useForm<UserLoginProps>({
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = (formData: LoginFormData) => {
+  const onSubmit = (formData: UserLoginProps) => {
     setLoading(true);
     setMessage("");
     loginUser(formData)
       .then((res) => {
         if (res) {
-          console.log("🔥 :: res login ::", res);
           setUser(res);
         }
         setMessage("Welcome to Betsy!");

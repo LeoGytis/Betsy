@@ -15,7 +15,6 @@ interface Bet {
 
 const BetsList: React.FC = () => {
   const [bets, setBets] = useState<Bet[]>([]);
-  console.log("🔥 :: bets ::", bets);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 

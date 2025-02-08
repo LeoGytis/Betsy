@@ -1,9 +1,5 @@
+import { UserLoginProps } from "../utils/constants";
 import apiRequest from "./apiService";
-
-interface LoginUserParams {
-  email: string;
-  password: string;
-}
 
 export interface LoginUserResponse {
   id: string;
@@ -16,7 +12,7 @@ export interface LoginUserResponse {
 export const loginUser = ({
   email,
   password,
-}: LoginUserParams): Promise<LoginUserResponse> => {
+}: UserLoginProps): Promise<LoginUserResponse> => {
   return apiRequest("/login", {
     method: "POST",
     body: JSON.stringify({ email, password }),

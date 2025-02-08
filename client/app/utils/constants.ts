@@ -1,5 +1,17 @@
 export const BASE_URL = "http://localhost:3000";
 
+export interface RegisterUserProps {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+export interface UserLoginProps {
+  email: string;
+  password: string;
+}
+
 export enum BetStatus {
   Lost = "lost",
   Win = "win",

@@ -7,7 +7,6 @@ const NavBar: React.FC = () => {
   const router = useRouter();
   // const { balance } = useBalance();
   const { userData } = useUser();
-  console.log("🔥 :: userData ::", userData);
 
   return (
     <div className="flex justify-between items-center text-violet-500 border border-violet-800 rounded p-4">

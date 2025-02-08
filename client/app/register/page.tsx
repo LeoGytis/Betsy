@@ -4,14 +4,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { registerUser } from "../services/registerUserService";
+import { RegisterUserProps } from "../utils/constants";
 import { registerSchema } from "../utils/validationSchemas";
-
-interface RegisterFormData {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
@@ -22,11 +16,11 @@ const RegisterForm: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<RegisterFormData>({
+  } = useForm<RegisterUserProps>({
     resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = (formData: RegisterFormData) => {
+  const onSubmit = (formData: RegisterUserProps) => {
     setLoading(true);
     setMessage("");
     registerUser(formData)
