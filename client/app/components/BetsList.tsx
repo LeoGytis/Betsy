@@ -57,7 +57,7 @@ const BetsList: React.FC = () => {
         bets.map((bet) => (
           <div
             key={bet.id}
-            className="flex justify-between items-center bg-gray-900 border border-violet-500 rounded p-4"
+            className="relative flex justify-between items-center bg-gray-900 border border-violet-500 rounded p-4"
           >
             <div className="flex flex-col gap-2">
               <span
@@ -74,7 +74,7 @@ const BetsList: React.FC = () => {
               <p>Time: {formatDateToTime(bet.createdAt)}</p>
               <p>ID: {bet.id}</p>
             </div>
-            <div className="flex flex-col gap-2 items-center">
+            <div className="absolute top-0 right-2 flex flex-col gap-2 items-center">
               <FaDice className="w-12 h-12 text-violet-500 text-opacity-40" />
               <button
                 onClick={() => handleDelete(bet.id)}
