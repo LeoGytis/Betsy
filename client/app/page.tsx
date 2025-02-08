@@ -1,7 +1,7 @@
 "use client";
-import BetsList from "./components/BetsList";
 import Betting from "./components/Betting";
 import NavBar from "./components/NavBar";
+import Toggler from "./components/Toggler";
 import Transactions from "./components/Transactions";
 
 // const queryClient = new QueryClient();
@@ -17,7 +17,8 @@ const HomePage: React.FC = () => {
           <Betting />
           <Transactions />
         </div>
-        <BetsList />
+        <Toggler />
+        {/* <BetsList /> */}
       </div>
     </div>
     // </BalanceProvider>

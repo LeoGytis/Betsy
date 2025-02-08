@@ -49,8 +49,8 @@ const BetsList: React.FC = () => {
   }
 
   return (
-    <div className="w-2/3 flex flex-col space-y-4 p-4 border border-violet-800 rounded">
-      <h1 className="text-xl font-semibold">Bets</h1>
+    <div className="w-full flex flex-col space-y-4 p-4 border border-violet-800 rounded">
+      <h1 className="text-xl font-semibold">My Bets</h1>
       {bets.length === 0 ? (
         <div>No bets available</div>
       ) : (
@@ -72,6 +72,7 @@ const BetsList: React.FC = () => {
                 <p>Win Amount: ${bet.winAmount}</p>
               ) : null}
               <p>Time: {formatDateToTime(bet.createdAt)}</p>
+              <p>ID: {bet.id}</p>
             </div>
             <div className="flex flex-col gap-2 items-center">
               <FaDice className="w-12 h-12 text-violet-500 text-opacity-40" />

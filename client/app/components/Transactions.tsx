@@ -45,7 +45,7 @@ const Transactions: React.FC = () => {
         transactions.map((transaction) => (
           <div
             key={transaction.id}
-            className="flex justify-between items-center bg-gray-900 border border-violet-500 rounded p-4"
+            className="w-full flex justify-between items-center bg-gray-900 border border-violet-500 rounded p-4"
           >
             <div className="flex flex-col gap-2">
               <span
@@ -57,6 +57,7 @@ const Transactions: React.FC = () => {
               </span>
               <p>Amount: ${transaction.amount}</p>
               <p>Time: {formatDateToTime(transaction.createdAt)}</p>
+              <p>ID: {transaction.id}</p>
             </div>
             <GiCrownedHeart className="w-16 h-16 text-violet-500 text-opacity-40" />
           </div>
