@@ -1,7 +1,9 @@
 import moment from "moment";
 import React, { useEffect, useState } from "react";
+import { GiCrownedHeart } from "react-icons/gi";
 import { getBetsList } from "../services/bettingService";
 import { BetStatus, statusColor } from "../utils/constants";
+
 interface Bet {
   id: string;
   status: BetStatus;
@@ -43,17 +45,20 @@ const MyTransactions: React.FC = () => {
         bets.map((bet) => (
           <div
             key={bet.id}
-            className="flex flex-col gap-2 bg-gray-900 border border-violet-500 rounded p-4"
+            className="flex justify-between items-center bg-gray-900 border border-violet-500 rounded p-4"
           >
-            <span
-              className={`w-fit border rounded p-2 py-0 ${
-                statusColor[bet.status]
-              }`}
-            >
-              {bet.status}
-            </span>
-            <p>Amount: ${bet.amount}</p>
-            <p> Date: {moment(bet.date).format("HH:mm:ss")}</p>
+            <div className="flex flex-col gap-2">
+              <span
+                className={`w-fit border rounded p-2 py-0 ${
+                  statusColor[bet.status]
+                }`}
+              >
+                {bet.status}
+              </span>
+              <p>Amount: ${bet.amount}</p>
+              <p> Date: {moment(bet.date).format("HH:mm:ss")}</p>
+            </div>
+            <GiCrownedHeart className="w-16 h-16 text-violet-500 text-opacity-50" />
           </div>
         ))
       )}
