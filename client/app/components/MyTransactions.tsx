@@ -43,7 +43,7 @@ const MyTransactions: React.FC = () => {
         bets.map((bet) => (
           <div
             key={bet.id}
-            className="flex flex-col gap-2 bg-[#222222] border border-violet-500 rounded p-4"
+            className="flex flex-col gap-2 bg-gray-900 border border-violet-500 rounded p-4"
           >
             <span
               className={`w-fit border rounded p-2 py-0 ${

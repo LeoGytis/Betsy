@@ -53,7 +53,7 @@ const BetsList: React.FC = () => {
         bets.map((bet) => (
           <div
             key={bet.id}
-            className="flex justify-between items-center p-4 bg-black rounded-md shadow-md"
+            className="flex justify-between items-center bg-gray-900 border border-violet-500 rounded p-4"
           >
             <div>
               <span

@@ -14,6 +14,8 @@
   }
 }
 
+/* violet-800 = #6B21A8 */
+
 body {
   color: var(--foreground);
   background: var(--background);
