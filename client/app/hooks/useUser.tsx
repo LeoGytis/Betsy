@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { LoginUserResponse } from "../services/loginUserService";
+import { LoginUserResponse } from "../services/authService";
 
 // The context type for user data
 interface UserContextType {

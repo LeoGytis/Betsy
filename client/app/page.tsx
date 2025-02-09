@@ -1,17 +1,29 @@
 "use client";
+import { useEffect, useState } from "react";
 import Betting from "./components/Betting";
 import NavBar from "./components/NavBar";
 import Toggler from "./components/Toggler";
+import { getUserName } from "./utils/utils";
 
 const HomePage: React.FC = () => {
+  const [userName, setUserName] = useState<string | null>(null);
+
+  useEffect(() => {
+    setUserName(getUserName());
+  }, []);
+
   return (
     <div className="mx-auto max-w-screen-xl p-8 md:p-12 lg:p-20 lg:py-12">
-      <NavBar />
+      <NavBar userName={userName} />
       <div className="w-full flex gap-8 mt-6">
-        <div className="w-1/2 flex flex-col gap-2">
-          <Betting />
-        </div>
-        <Toggler />
+        {userName ? (
+          <>
+            <Betting />
+            <Toggler />
+          </>
+        ) : (
+          <div>Welcome to Betsy!</div>
+        )}
       </div>
     </div>
   );
