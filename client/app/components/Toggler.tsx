@@ -33,7 +33,6 @@ const Toggler = () => {
         </button>
       </div>
 
-      {/* Conditional Content Based on Active Tab */}
       {activeTab === "myBets" && <BetsList />}
       {activeTab === "myTransactions" && <Transactions />}
     </div>

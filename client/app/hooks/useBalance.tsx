@@ -1,16 +1,18 @@
+"use client";
 import { useQueryClient } from "@tanstack/react-query";
-import { createContext } from "react";
+import { createContext, useContext, useState } from "react";
 
-const BalanceContext = createContext<((balance: number) => void) | null>(null);
+const BalanceContext = createContext<{
+  balance: number;
+  setBalance: (balance: number) => void;
+} | null>(null);
 
 export const useBalance = () => {
-  const queryClient = useQueryClient();
-
-  const setBalance = (newBalance: number) => {
-    queryClient.setQueryData(["balance"], newBalance);
-  };
-
-  return { setBalance, balance: queryClient.getQueryData<number>(["balance"]) };
+  const context = useContext(BalanceContext);
+  if (!context) {
+    throw new Error("useBalance must be used within a BalanceProvider");
+  }
+  return context;
 };
 
 export const BalanceProvider = ({
@@ -18,10 +20,18 @@ export const BalanceProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const { setBalance } = useBalance();
+  const queryClient = useQueryClient();
+  const [balance, setBalanceState] = useState<number>(
+    queryClient.getQueryData<number>(["balance"]) || 0
+  );
+
+  const setBalance = (newBalance: number) => {
+    setBalanceState(newBalance);
+    queryClient.setQueryData(["balance"], newBalance);
+  };
 
   return (
-    <BalanceContext.Provider value={setBalance}>
+    <BalanceContext.Provider value={{ balance, setBalance }}>
       {children}
     </BalanceContext.Provider>
   );

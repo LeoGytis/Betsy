@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useBalance } from "../hooks/useBalance";
 import { placeBet } from "../services/bettingService";
 
 interface BettingFormData {
@@ -10,7 +11,8 @@ interface BettingFormData {
 const Betting = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
-  const [balance, setBalance] = useState<number>(1000);
+  // const [balance, setBalance] = useState<number>(1000);
+  const { balance, setBalance } = useBalance();
 
   const {
     register,
