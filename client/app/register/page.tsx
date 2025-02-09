@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { loginUser, registerUser } from "../services/authService";
+import { registerUser } from "../services/authService";
 import { RegisterUserProps } from "../utils/constants";
 import { registerSchema } from "../utils/validationSchemas";
 
@@ -27,7 +27,7 @@ const RegisterForm: React.FC = () => {
       .then(() => {
         setMessage("Successfully registered a new user.");
         // for dev faster login
-        loginUser({ email: formData.email, password: formData.password });
+        // loginUser({ email: formData.email, password: formData.password });
         router.push("/");
       })
       .catch((error: { message: string }) => {
@@ -39,18 +39,15 @@ const RegisterForm: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center border border-violet-500 rounded p-6">
+    <div className="max-w-lg mx-auto border border-violet-500 rounded py-10 px-24">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-sm text-black"
+        className="w-full flex flex-col gap-4"
       >
-        <h2 className="text-center text-xl font-bold mb-4">Register</h2>
+        <h2 className="text-center text-xl font-bold">Register</h2>
 
-        <div className="mb-4">
-          <label
-            htmlFor="name"
-            className="block text-sm font-medium text-gray-700"
-          >
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium ">
             Name
           </label>
           <input
@@ -58,19 +55,15 @@ const RegisterForm: React.FC = () => {
             type="text"
             placeholder="Enter your name"
             {...register("name")}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md"
+            className="w-full px-4 py-2 border border-gray-300 rounded"
           />
           {errors.name && (
             <p className="text-red-500 text-xs">{errors.name.message}</p>
           )}
         </div>
 
-        {/* Email Input */}
-        <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-black"
-          >
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium">
             Email
           </label>
           <input
@@ -78,19 +71,15 @@ const RegisterForm: React.FC = () => {
             type="email"
             placeholder="Enter your email"
             {...register("email")}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md text-black"
+            className="w-full px-4 py-2 border border-gray-300 rounded "
           />
           {errors.email && (
             <p className="text-red-500 text-xs">{errors.email.message}</p>
           )}
         </div>
 
-        {/* Password Input */}
-        <div className="mb-4">
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium text-gray-700"
-          >
+        <div>
+          <label htmlFor="password" className="block text-sm font-medium ">
             Password
           </label>
           <input
@@ -98,18 +87,17 @@ const RegisterForm: React.FC = () => {
             type="password"
             placeholder="Enter your password"
             {...register("password")}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md"
+            className="w-full px-4 py-2  border border-gray-300 rounded"
           />
           {errors.password && (
             <p className="text-red-500 text-xs">{errors.password.message}</p>
           )}
         </div>
 
-        {/* Confirm Password Input */}
-        <div className="mb-4">
+        <div>
           <label
             htmlFor="confirmPassword"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium "
           >
             Confirm Password
           </label>
@@ -118,7 +106,7 @@ const RegisterForm: React.FC = () => {
             type="password"
             placeholder="Confirm your password"
             {...register("confirmPassword")}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md"
+            className="w-full px-4 py-2 border border-gray-300 rounded"
           />
           {errors.confirmPassword && (
             <p className="text-red-500 text-xs">
@@ -127,18 +115,14 @@ const RegisterForm: React.FC = () => {
           )}
         </div>
 
-        {/* Register Button */}
-        <div className="mb-4">
-          <button
-            type="submit"
-            className="w-full px-4 py-2 bg-violet-500 text-white rounded-md"
-            disabled={loading}
-          >
-            {loading ? "Registering..." : "Register"}
-          </button>
-        </div>
+        <button
+          type="submit"
+          className="w-full px-4 py-2 mt-6 bg-violet-500 text-white rounded"
+          disabled={loading}
+        >
+          {loading ? "Registering..." : "Register"}
+        </button>
 
-        {/* Error or Success Message */}
         {message && <p className="text-center text-red-500">{message}</p>}
       </form>
     </div>
