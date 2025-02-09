@@ -4,7 +4,7 @@ import { getMyTransactions } from "../services/transiactionsService";
 import { TransactionType, typeColor } from "../utils/constants";
 import { formatDate } from "../utils/utils";
 
-interface Bet {
+interface TransactionProps {
   id: string;
   type: TransactionType;
   amount: number;
@@ -12,10 +12,9 @@ interface Bet {
 }
 
 const MyTransactions: React.FC = () => {
-  const [transactions, setTransactions] = useState<Bet[]>([]);
+  const [transactions, setTransactions] = useState<TransactionProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  console.log("🔥 :: transactions ::", transactions);
 
   useEffect(() => {
     getMyTransactions()
