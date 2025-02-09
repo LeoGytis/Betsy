@@ -11,7 +11,6 @@ interface BettingFormData {
 const Betting = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
-  // const [balance, setBalance] = useState<number>(1000);
   const { balance, setBalance } = useBalance();
 
   const {
@@ -25,7 +24,6 @@ const Betting = () => {
     setMessage("");
     placeBet(amount)
       .then((res) => {
-        console.log("🔥 :: res ::", res);
         setMessage(`You have made a bet of €${amount}`);
         if (res.balance) {
           setBalance(res.balance);
@@ -54,7 +52,7 @@ const Betting = () => {
           id="amount"
           type="number"
           placeholder="Enter your bet"
-          className="w-1/2 px-4 py-2 border border-gray-300 rounded-md"
+          className="w-1/2 px-4 py-2 text-center border border-gray-300 rounded"
           {...register("amount", {
             required: "Amount is required",
             min: { value: 1, message: "Minimum bet is 1" },
@@ -63,7 +61,7 @@ const Betting = () => {
 
         <button
           type="submit"
-          className="w-1/2 px-4 py-2 bg-violet-800 text-white rounded-md"
+          className="w-1/2 px-4 py-2 bg-violet-800 text-white rounded"
           disabled={loading}
         >
           BET

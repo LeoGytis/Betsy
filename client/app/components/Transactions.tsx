@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { GiCrownedHeart } from "react-icons/gi";
-import { getBetsList } from "../services/bettingService";
-import { BetStatus, statusColor } from "../utils/constants";
+import { getMyTransactions } from "../services/transiactionsService";
+import { TransactionType, typeColor } from "../utils/constants";
 import { formatDateToTime } from "../utils/utils";
 
 interface Bet {
   id: string;
-  status: BetStatus;
+  type: TransactionType;
   amount: number;
   createdAt: Date;
 }
@@ -15,9 +15,10 @@ const Transactions: React.FC = () => {
   const [transactions, setTransactions] = useState<Bet[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  console.log("🔥 :: transactions ::", transactions);
 
   useEffect(() => {
-    getBetsList()
+    getMyTransactions()
       .then((data) => {
         setTransactions(data);
         setLoading(false);
@@ -49,11 +50,11 @@ const Transactions: React.FC = () => {
           >
             <div className="flex flex-col gap-2">
               <span
-                className={`w-fit border rounded p-2 py-0 ${
-                  statusColor[transaction.status]
+                className={`w-fit capitalize border rounded p-2 py-0 ${
+                  typeColor[transaction.type]
                 }`}
               >
-                {transaction.status}
+                {transaction.type}
               </span>
               <p>Amount: ${transaction.amount}</p>
               <p>Time: {formatDateToTime(transaction.createdAt)}</p>
