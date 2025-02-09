@@ -11,7 +11,7 @@ interface BettingFormData {
 const Betting = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
-  const { balance, setBalance } = useBalance();
+  const { setBalance } = useBalance();
 
   const {
     register,
@@ -43,7 +43,6 @@ const Betting = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-6 justify-center items-center text-black"
       >
-        <h1 className="text-white">BALNASS: {balance}</h1>
         <h2 className="text-center text-xl font-sembold text-violet-500">
           Place your bet
         </h2>

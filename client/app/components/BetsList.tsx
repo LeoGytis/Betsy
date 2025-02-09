@@ -33,7 +33,11 @@ const BetsList: React.FC = () => {
   const handleDelete = (betId: string) => {
     deleteBet(betId)
       .then(() => {
-        setBets((prevBets) => prevBets.filter((bet) => bet.id !== betId));
+        setBets((prevBets) =>
+          prevBets.map((bet) =>
+            bet.id === betId ? { ...bet, status: BetStatus.Canceled } : bet
+          )
+        );
       })
       .catch((error: { message: string }) => {
         setError(error.message);
@@ -67,21 +71,24 @@ const BetsList: React.FC = () => {
               >
                 {bet.status}
 
-                {bet.status === "win" ? <p>€{bet.winAmount}!</p> : null}
+                {bet.status === BetStatus.Win ? <p>€{bet.winAmount}!</p> : null}
               </div>
               <p>Bet: €{bet.amount}</p>
 
               <p>Date: {formatDate(bet.createdAt)}</p>
               <p>ID: {bet.id}</p>
             </div>
-            <div className="absolute top-0 right-2 flex flex-col gap-2 items-center">
+            <div className="absolute bottom-4 right-2 flex flex-col gap-2 items-center">
               <FaDice className="w-12 h-12 text-violet-500 text-opacity-40" />
-              <button
-                onClick={() => handleDelete(bet.id)}
-                className="mt-auto text-red-500 border border-red-500 rounded hover:text-red-800 hover:border-red-800 px-3 py-1"
-              >
-                Cancel
-              </button>
+              {bet.status !== BetStatus.Canceled &&
+                bet.status !== BetStatus.Win && (
+                  <button
+                    onClick={() => handleDelete(bet.id)}
+                    className="mt-auto text-red-500 border border-red-500 rounded hover:text-red-800 hover:border-red-800 px-3 py-1"
+                  >
+                    Cancel
+                  </button>
+                )}
             </div>
           </div>
         ))
