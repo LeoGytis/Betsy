@@ -4,11 +4,11 @@ import { useForm } from "react-hook-form";
 import { useBalance } from "../hooks/useBalance";
 import { placeBet } from "../services/bettingService";
 
-interface BettingFormData {
+interface BetFormProps {
   amount: number;
 }
 
-const Betting = () => {
+const BetForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const { setBalance } = useBalance();
@@ -17,9 +17,9 @@ const Betting = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<BettingFormData>({});
+  } = useForm<BetFormProps>({});
 
-  const onSubmit = ({ amount }: BettingFormData) => {
+  const onSubmit = ({ amount }: BetFormProps) => {
     setLoading(true);
     setMessage("");
     placeBet(amount)
@@ -74,4 +74,4 @@ const Betting = () => {
   );
 };
 
-export default Betting;
+export default BetForm;

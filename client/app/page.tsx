@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import Betting from "./components/Betting";
+import BetForm from "./components/BetForm";
 import NavBar from "./components/NavBar";
 import Toggler from "./components/Toggler";
 import { getUserName } from "./utils/utils";
@@ -18,7 +18,7 @@ const HomePage: React.FC = () => {
       <div className="w-full flex gap-8 mt-6">
         {userName ? (
           <>
-            <Betting />
+            <BetForm />
             <Toggler />
           </>
         ) : (
