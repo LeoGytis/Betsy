@@ -60,17 +60,17 @@ const BetsList: React.FC = () => {
             className="relative flex justify-between items-center bg-gray-900 border border-violet-500 rounded p-4"
           >
             <div className="flex flex-col gap-2">
-              <span
-                className={`w-fit border rounded p-2 py-0 ${
+              <div
+                className={`w-fit flex gap-2  border rounded p-2 py-0 ${
                   statusColor[bet.status]
                 }`}
               >
                 {bet.status}
-              </span>
-              <p>Bet: ${bet.amount}</p>
-              {bet.status === "win" ? (
-                <p>Win Amount: ${bet.winAmount}</p>
-              ) : null}
+
+                {bet.status === "win" ? <p>€{bet.winAmount}!</p> : null}
+              </div>
+              <p>Bet: €{bet.amount}</p>
+
               <p>Time: {formatDateToTime(bet.createdAt)}</p>
               <p>ID: {bet.id}</p>
             </div>

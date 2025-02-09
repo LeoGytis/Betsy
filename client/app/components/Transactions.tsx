@@ -56,7 +56,7 @@ const Transactions: React.FC = () => {
               >
                 {transaction.type}
               </span>
-              <p>Amount: ${transaction.amount}</p>
+              <p>Amount: €{transaction.amount}</p>
               <p>Time: {formatDateToTime(transaction.createdAt)}</p>
               <p>ID: {transaction.id}</p>
             </div>
