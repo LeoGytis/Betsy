@@ -47,7 +47,7 @@ const RegisterForm: React.FC = () => {
         <h2 className="text-center text-xl font-bold">Register</h2>
 
         <div>
-          <label htmlFor="name" className="block text-sm font-medium ">
+          <label htmlFor="name" className="block text-sm">
             Name
           </label>
           <input
@@ -63,7 +63,7 @@ const RegisterForm: React.FC = () => {
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium">
+          <label htmlFor="email" className="block text-sm">
             Email
           </label>
           <input
@@ -79,7 +79,7 @@ const RegisterForm: React.FC = () => {
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-sm font-medium ">
+          <label htmlFor="password" className="block text-sm">
             Password
           </label>
           <input
@@ -95,10 +95,7 @@ const RegisterForm: React.FC = () => {
         </div>
 
         <div>
-          <label
-            htmlFor="confirmPassword"
-            className="block text-sm font-medium "
-          >
+          <label htmlFor="confirmPassword" className="block text-sm">
             Confirm Password
           </label>
           <input
@@ -117,7 +114,7 @@ const RegisterForm: React.FC = () => {
 
         <button
           type="submit"
-          className="w-full px-4 py-2 mt-6 bg-violet-500 text-white rounded"
+          className="w-full  bg-violet-500 text-white rounded px-4 py-2 mt-6"
           disabled={loading}
         >
           {loading ? "Registering..." : "Register"}

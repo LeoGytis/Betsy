@@ -44,18 +44,15 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center border border-violet-500 rounded p-6">
+    <div className="max-w-lg mx-auto border border-violet-500 rounded py-10 px-24">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-sm text-black"
+        className="w-full flex flex-col gap-4"
       >
         <h2 className="text-center text-xl font-bold mb-4">Login</h2>
 
-        <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
-          >
+        <div>
+          <label htmlFor="email" className="block text-sm">
             Email
           </label>
           <input
@@ -70,11 +67,8 @@ const Login = () => {
           )}
         </div>
 
-        <div className="mb-4">
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium text-gray-700"
-          >
+        <div>
+          <label htmlFor="password" className="block text-sm">
             Password
           </label>
           <input
@@ -89,15 +83,13 @@ const Login = () => {
           )}
         </div>
 
-        <div className="mb-4">
-          <button
-            type="submit"
-            className="w-full px-4 py-2 bg-violet-500 text-white rounded-md"
-            disabled={loading}
-          >
-            {loading ? "Logging in..." : "Login"}
-          </button>
-        </div>
+        <button
+          type="submit"
+          className="w-full  bg-violet-500 text-white rounded px-4 py-2 mt-6"
+          disabled={loading}
+        >
+          {loading ? "Logging in..." : "Login"}
+        </button>
 
         {message && <p className="text-center text-red-500">{message}</p>}
       </form>
