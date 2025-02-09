@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { deleteBet, getBetsList } from "../services/bettingService";
 import { BetStatus, statusColor } from "../utils/constants";
-import { formatDateToTime } from "../utils/utils";
+import { formatDate } from "../utils/utils";
 
 import { FaDice } from "react-icons/fa6";
 
@@ -71,7 +71,7 @@ const BetsList: React.FC = () => {
               </div>
               <p>Bet: €{bet.amount}</p>
 
-              <p>Time: {formatDateToTime(bet.createdAt)}</p>
+              <p>Date: {formatDate(bet.createdAt)}</p>
               <p>ID: {bet.id}</p>
             </div>
             <div className="absolute top-0 right-2 flex flex-col gap-2 items-center">

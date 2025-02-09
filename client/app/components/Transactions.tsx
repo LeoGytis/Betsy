@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { GiCrownedHeart } from "react-icons/gi";
 import { getMyTransactions } from "../services/transiactionsService";
 import { TransactionType, typeColor } from "../utils/constants";
-import { formatDateToTime } from "../utils/utils";
+import { formatDate } from "../utils/utils";
 
 interface Bet {
   id: string;
@@ -57,7 +57,7 @@ const Transactions: React.FC = () => {
                 {transaction.type}
               </span>
               <p>Amount: €{transaction.amount}</p>
-              <p>Time: {formatDateToTime(transaction.createdAt)}</p>
+              <p>Date: {formatDate(transaction.createdAt)}</p>
               <p>ID: {transaction.id}</p>
             </div>
             <GiCrownedHeart className="w-16 h-16 text-violet-500 text-opacity-40" />

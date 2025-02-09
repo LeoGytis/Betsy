@@ -51,7 +51,6 @@ const Betting = () => {
         <input
           id="amount"
           type="number"
-          placeholder="Enter your bet"
           className="w-1/2 px-4 py-2 text-center border border-gray-300 rounded"
           {...register("amount", {
             required: "Amount is required",
