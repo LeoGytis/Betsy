@@ -11,7 +11,7 @@ interface Bet {
   createdAt: Date;
 }
 
-const Transactions: React.FC = () => {
+const MyTransactions: React.FC = () => {
   const [transactions, setTransactions] = useState<Bet[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -68,4 +68,4 @@ const Transactions: React.FC = () => {
   );
 };
 
-export default Transactions;
+export default MyTransactions;

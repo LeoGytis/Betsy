@@ -5,7 +5,7 @@ import { formatDate } from "../utils/utils";
 
 import { FaDice } from "react-icons/fa6";
 
-interface Bet {
+interface BetProps {
   id: string;
   status: BetStatus;
   amount: number;
@@ -13,8 +13,8 @@ interface Bet {
   createdAt: Date;
 }
 
-const BetsList: React.FC = () => {
-  const [bets, setBets] = useState<Bet[]>([]);
+const MyBets: React.FC = () => {
+  const [bets, setBets] = useState<BetProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -65,7 +65,7 @@ const BetsList: React.FC = () => {
           >
             <div className="flex flex-col gap-2">
               <div
-                className={`w-fit flex gap-2  border rounded p-2 py-0 ${
+                className={`w-fit flex gap-2 capitalize border rounded p-2 py-0 ${
                   statusColor[bet.status]
                 }`}
               >
@@ -97,4 +97,4 @@ const BetsList: React.FC = () => {
   );
 };
 
-export default BetsList;
+export default MyBets;

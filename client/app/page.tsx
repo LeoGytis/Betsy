@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import BetForm from "./components/BetForm";
+import ListView from "./components/ListView";
 import NavBar from "./components/NavBar";
-import Toggler from "./components/Toggler";
 import { getUserName } from "./utils/utils";
 
 const HomePage: React.FC = () => {
@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
         {userName ? (
           <>
             <BetForm />
-            <Toggler />
+            <ListView />
           </>
         ) : (
           <div>Welcome to Betsy!</div>

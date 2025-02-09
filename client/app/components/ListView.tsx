@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
-import BetsList from "./BetsList";
-import Transactions from "./Transactions";
+import MyBets from "./BetsList";
+import MyTransactions from "./MyTransactions";
 
-const Toggler = () => {
+const ListView = () => {
   const [activeTab, setActiveTab] = useState<"myBets" | "myTransactions">(
     "myBets"
   );
@@ -33,10 +33,10 @@ const Toggler = () => {
         </button>
       </div>
 
-      {activeTab === "myBets" && <BetsList />}
-      {activeTab === "myTransactions" && <Transactions />}
+      {activeTab === "myBets" && <MyBets />}
+      {activeTab === "myTransactions" && <MyTransactions />}
     </div>
   );
 };
 
-export default Toggler;
+export default ListView;
