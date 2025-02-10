@@ -39,32 +39,34 @@ const BetForm = () => {
   };
 
   return (
-    <div className="w-full lg:w-1/3 sticky top-0 lg:top-4 h-fit flex self-center lg:self-start justify-center items-center border rounded bg-secondary p-6">
+    <div className="w-full lg:w-1/3 sticky top-0 lg:top-4 h-fit flex self-center lg:self-start justify-center items-center border rounded bg-secondary p-4 lg:p-6">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full flex flex-col gap-6 justify-center items-center"
+        className="w-full flex lg:flex-col gap-6 justify-center items-center"
       >
-        <h2 className="text-center text-xl font-sembold text-primary">
+        <h2 className="hidden lg:block text-center text-xl font-sembold text-primary">
           Place your bet
         </h2>
 
-        <input
-          id="amount"
-          type="number"
-          className="w-1/2 px-4 py-2 text-center border border-gray-300 rounded"
-          {...register("amount", {
-            required: "Amount is required",
-            min: { value: 1, message: "Minimum bet is 1" },
-          })}
-        />
+        <div className="lg:w-1/2 flex flex-col gap-4">
+          <input
+            id="amount"
+            type="number"
+            className="px-4 py-2 text-center border border-gray-300 rounded"
+            {...register("amount", {
+              required: "Amount is required",
+              min: { value: 1, message: "Minimum bet is 1" },
+            })}
+          />
 
-        <button
-          type="submit"
-          className="w-1/2 bg-primary border rounded hover:bg-transparent hover:text-primary px-4 py-2"
-          disabled={loading}
-        >
-          BET
-        </button>
+          <button
+            type="submit"
+            className="bg-primary border rounded hover:bg-transparent hover:text-primary px-4 py-2"
+            disabled={loading}
+          >
+            BET
+          </button>
+        </div>
 
         <div className="text-sm text-center text-red-500">
           {errors.amount && <p>{errors.amount.message} </p>}
