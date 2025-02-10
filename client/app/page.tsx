@@ -38,19 +38,15 @@ const HomePage: React.FC = () => {
           <ListView />
         </div>
       ) : (
-        <div className="realtive h-96 w-96 mx-auto flex flex-col gap-8 justify-center items-center border-2 mt-6 p-2">
+        <div className="realtive lg:h-96 lg:w-96 mx-auto flex flex-col gap-8 justify-center items-center border-2 mt-8 p-2">
           <Image
             src="/betsy.svg"
             alt="betsy_image"
-            // fill
-            // objectFit="contain"
-
             width={500}
             height={500}
             layout="intrinsic"
-            className="color-primary"
           />
-          <h1 className="text-6xl font-bold text-primary whitespace-nowrap">
+          <h1 className="text-3xl lg:text-6xl font-bold text-primary whitespace-nowrap">
             WELCOME TO BETSY!
           </h1>
         </div>

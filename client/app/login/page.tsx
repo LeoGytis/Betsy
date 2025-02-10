@@ -42,7 +42,7 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto border rounded py-10 px-24">
+    <div className="max-w-lg mx-auto border rounded py-5 px-12 lg:py-10 lg:px-24">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-4"
@@ -85,7 +85,7 @@ const Login = () => {
 
         <button
           type="submit"
-          className="w-full  bg-secondary rounded px-4 py-2 mt-6"
+          className="w-full border rounded hover:text-foreground hover:bg-primary  px-4 py-2 mt-6"
           disabled={loading}
         >
           {loading ? "Logging in..." : "Login"}

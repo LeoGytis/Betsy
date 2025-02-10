@@ -20,7 +20,7 @@ export default function RootLayout({
       <QueryClientProvider client={queryClient}>
         <BalanceProvider>
           <body
-            className={`${font.className} mx-auto max-w-screen-xl p-4 md:p-8 lg:p-12 lg:py-12`}
+            className={`${font.className} mx-auto max-w-screen-xl py-12 px-4 lg:p-12`}
           >
             {children}
           </body>
