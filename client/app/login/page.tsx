@@ -47,7 +47,7 @@ const Login = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-4"
       >
-        <h2 className="text-center text-violet-500 text-xl font-bold mb-4">
+        <h2 className="text-center text-primary text-xl font-bold mb-4">
           Login
         </h2>
 
@@ -85,7 +85,7 @@ const Login = () => {
 
         <button
           type="submit"
-          className="w-full  bg-violet-500 rounded px-4 py-2 mt-6"
+          className="w-full  bg-primary rounded px-4 py-2 mt-6"
           disabled={loading}
         >
           {loading ? "Logging in..." : "Login"}

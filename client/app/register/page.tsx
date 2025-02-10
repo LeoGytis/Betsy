@@ -44,9 +44,7 @@ const RegisterForm: React.FC = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-4"
       >
-        <h2 className="text-center text-violet-500 text-xl font-bold">
-          Register
-        </h2>
+        <h2 className="text-center text-primary text-xl font-bold">Register</h2>
 
         <div>
           <label htmlFor="name" className="block text-sm">
@@ -116,7 +114,7 @@ const RegisterForm: React.FC = () => {
 
         <button
           type="submit"
-          className="w-full  bg-violet-500  rounded px-4 py-2 mt-6"
+          className="w-full  bg-primary  rounded px-4 py-2 mt-6"
           disabled={loading}
         >
           {loading ? "Registering..." : "Register"}

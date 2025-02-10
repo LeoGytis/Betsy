@@ -6,8 +6,8 @@
   html {
     --background: #141414;
     --foreground: #ededed;
-    --color-textPrimary: #8b5cf6;
-    --color-secondary: #a8cf1b;
+    --color-primary: #8b5cf6;
+    --color-secondary: #111827;
     --color-border: #5b21b6;
   }
 }
@@ -16,14 +16,14 @@
 html[data-theme="light"] {
   --background: #ffffff;
   --foreground: #171717;
-  --color-textPrimary: #ee6312;
-  --color-secondary: #a8cf1b;
-  --color-border: #4548ff;
+  --color-primary: #ee6312;
+  --color-secondary: #aeda10;
+  --color-border: #e05200;
 }
 
 /* --blue1: #2e31db; */
 /* --blue2: #4548ff; */
-
+/* 111827  */
 /* violet-500 #8b5cf6  */
 
 body {

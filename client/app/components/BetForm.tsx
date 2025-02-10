@@ -44,7 +44,7 @@ const BetForm = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-6 justify-center items-center"
       >
-        <h2 className="text-center text-xl font-sembold text-violet-500">
+        <h2 className="text-center text-xl font-sembold text-primary">
           Place your bet
         </h2>
 

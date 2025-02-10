@@ -64,7 +64,7 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
         filteredBets.map((bet) => (
           <div
             key={bet.id}
-            className="relative flex justify-between items-center bg-gray-900 border border-violet-500 rounded p-4"
+            className="relative flex justify-between items-center bg-gray-900 border border-primary rounded p-4"
           >
             <div className="flex flex-col gap-2">
               <div
@@ -81,7 +81,7 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
               <p>ID: {bet.id}</p>
             </div>
             <div className="absolute bottom-4 right-2 flex flex-col gap-2 items-center">
-              <FaDice className="w-12 h-12 text-violet-500 text-opacity-40" />
+              <FaDice className="w-12 h-12 text-primary text-opacity-40" />
               {bet.status !== BetStatus.Canceled &&
                 bet.status !== BetStatus.Win && (
                   <button

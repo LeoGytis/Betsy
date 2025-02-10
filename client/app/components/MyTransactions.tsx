@@ -41,7 +41,7 @@ const MyTransactions: React.FC<MyTransactionsProps> = ({ filters }) => {
         transactions.map((transaction) => (
           <div
             key={transaction.id}
-            className="w-full flex justify-between items-center bg-gray-900 border border-violet-500 rounded p-4"
+            className="w-full flex justify-between items-center bg-gray-900 border border-primary rounded p-4"
           >
             <div className="flex flex-col gap-2">
               <span
@@ -55,7 +55,7 @@ const MyTransactions: React.FC<MyTransactionsProps> = ({ filters }) => {
               <p>Date: {formatDate(transaction.createdAt)}</p>
               <p>ID: {transaction.id}</p>
             </div>
-            <GiCrownedHeart className="w-16 h-16 text-violet-500 text-opacity-40" />
+            <GiCrownedHeart className="w-16 h-16 text-primary text-opacity-40" />
           </div>
         ))
       )}

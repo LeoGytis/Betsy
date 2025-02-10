@@ -43,16 +43,14 @@ const Filter: React.FC<FilterProps> = ({ activeTab, filters, onChange }) => {
 
   return (
     <div className="flex justify-center items-end gap-2 borde border-red-5">
-      <h3 className="text-md text-violet-500 mb-1">Filter by:</h3>
+      <h3 className="text-md text-primary mb-1">Filter by:</h3>
       <div className="flex gap-2">
         {Object.values(filterOptions).map((filterValue) => (
           <button
             key={filterValue}
             onClick={() => handleButtonClick(filterValue)}
-            className={`text-sm border border-violet-500 rounded transition-colors px-2 py-1 hover:bg-violet-600 hover:text-white ${
-              selectedFilter === filterValue
-                ? "bg-violet-500"
-                : "text-opacity-50 "
+            className={`text-sm border border-primary rounded transition-colors px-2 py-1 hover:bg-violet-600 hover:text-white ${
+              selectedFilter === filterValue ? "bg-primary" : "text-opacity-50 "
             }`}
           >
             {filterValue}
