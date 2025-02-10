@@ -53,10 +53,6 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
     ? bets.filter((bet) => bet.status === filters.status)
     : bets;
 
-  const handlePageChange = (selected: { selected: number }) => {
-    setCurrentPage(selected.selected);
-  };
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -106,7 +102,7 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
       )}
       <ReactPaginate
         pageCount={totalPages}
-        onPageChange={handlePageChange}
+        onPageChange={(selected) => setCurrentPage(selected.selected)}
         containerClassName={"self-center flex gap-3 text-lg text-primary mt-2"}
         activeClassName={"border-b-2 bg-primary text-foreground px-2 rounded"}
         pageClassName={"text-primary"}

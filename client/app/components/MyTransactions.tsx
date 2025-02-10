@@ -31,10 +31,6 @@ const MyTransactions: React.FC<MyTransactionsProps> = ({ filters }) => {
       });
   }, [filters, currentPage]);
 
-  const handlePageChange = ({ selected }: { selected: number }) => {
-    setCurrentPage(selected);
-  };
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -71,7 +67,7 @@ const MyTransactions: React.FC<MyTransactionsProps> = ({ filters }) => {
       )}
       <ReactPaginate
         pageCount={totalPages}
-        onPageChange={handlePageChange}
+        onPageChange={(selected) => setCurrentPage(selected.selected)}
         containerClassName={"self-center flex gap-3 text-lg text-primary mt-2"}
         activeClassName={"border-b-2 bg-primary text-foreground px-2 rounded"}
         pageClassName={"text-primary"}
