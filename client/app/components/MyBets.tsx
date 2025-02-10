@@ -4,7 +4,7 @@ import { deleteBet, getBetsList } from "../services/bettingService";
 import { BetStatus, ErrorResponse, statusColor } from "../utils/constants";
 import { formatDate } from "../utils/utils";
 
-interface BetProps {
+export interface BetProps {
   id: string;
   status: BetStatus;
   amount: number;
@@ -24,14 +24,14 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
   useEffect(() => {
     getBetsList(filters.status)
       .then((data) => {
-        setBets(data);
+        setBets(data.bets);
         setLoading(false);
       })
       .catch((error: ErrorResponse) => {
         setError(error.message);
         setLoading(false);
       });
-  }, []);
+  }, [filters]);
 
   const handleDelete = (betId: string) => {
     deleteBet(betId)

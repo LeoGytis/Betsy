@@ -1,3 +1,4 @@
+import { BetProps } from "../components/MyBets";
 import { ErrorResponse } from "../utils/constants";
 import apiRequest from "./apiService";
 
@@ -23,22 +24,26 @@ export const placeBet = (amount: number): Promise<PlaceBetResponse> => {
 
 export const getBetsList = async (
   status?: string,
-  betId?: string,
   page: number = 1,
-  limit: number = 5
-) => {
+  limit: number = 2
+): Promise<{
+  bets: BetProps[];
+  total: number;
+  page: number;
+  limit: number;
+}> => {
   let url = `/my-bets?page=${page}&limit=${limit}`;
-
   if (status) {
     url += `&status=${status}`;
   }
 
-  if (betId) {
-    url += `&id=${betId}`;
-  }
-
-  const data = await apiRequest(url);
-  return Array.isArray(data.data) ? data.data : [];
+  const response = await apiRequest(url);
+  return {
+    bets: response.data,
+    total: response.total,
+    page: response.page,
+    limit: response.limit,
+  };
 };
 
 export const deleteBet = async (betId: string) => {
