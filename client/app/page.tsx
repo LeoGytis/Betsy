@@ -10,12 +10,9 @@ import { getUserName } from "./utils/utils";
 
 const HomePage: React.FC = () => {
   const [userName, setUserName] = useState<string | null>(null);
-  const [filters, setFilters] = useState<FiltersProps>({
-    type: "bet", // Example type
-    status: "win", // Example status
-  });
-
   const [activeTab, setActiveTab] = useState<ActiveTab>(ActiveTab.MyBets);
+  console.log("🔥 :: activeTab ::", activeTab);
+  const [filters, setFilters] = useState<FiltersProps>({});
 
   useEffect(() => {
     getBetsList()
@@ -31,6 +28,14 @@ const HomePage: React.FC = () => {
       });
   }, []);
 
+  const handleFilterChange = (newFilters: FiltersProps) => {
+    // Set the new filters state here
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      ...newFilters, // Update filters based on the new changes
+    }));
+  };
+
   const handleTabChange = (newActiveTab: ActiveTab) => {
     setActiveTab(newActiveTab);
     console.log("Active Tab changed to:", newActiveTab);
@@ -44,12 +49,17 @@ const HomePage: React.FC = () => {
           <>
             <div className="w-full flex flex-col gap-4">
               <BetForm />
-              <Filter />
+              {/* Pass activeTab here to make sure the Filter component knows which tab is active */}
+              <Filter
+                activeTab={activeTab}
+                onChange={handleFilterChange}
+                filters={filters} // Ensure the latest filters are passed to Filter
+              />
             </div>
             <ListView
               activeTab={activeTab}
               onTabChange={handleTabChange}
-              filters={filters}
+              filters={filters} // Ensure the latest filters are passed to ListView
             />
           </>
         ) : (

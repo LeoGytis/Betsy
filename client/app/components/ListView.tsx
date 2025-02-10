@@ -9,8 +9,13 @@ interface ListViewProps {
   onTabChange: (activeTab: ActiveTab) => void;
   filters: FiltersProps;
 }
-const ListView: React.FC<ListViewProps> = ({ filters }) => {
-  const [activeTab, setActiveTab] = useState<ActiveTab>(ActiveTab.MyBets);
+
+const ListView: React.FC<ListViewProps> = ({
+  activeTab,
+  onTabChange,
+  filters,
+}) => {
+  // const [activeTab, setActiveTab] = useState<ActiveTab>(ActiveTab.MyBets);
   const [appliedFilters, setAppliedFilters] = useState<FiltersProps>(filters);
   console.log("🔥 :: appliedFilters ::", appliedFilters);
 
@@ -27,7 +32,9 @@ const ListView: React.FC<ListViewProps> = ({ filters }) => {
               ? "bg-violet-500"
               : "text-opacity-50 border-violet-800"
           } hover:bg-violet-600`}
-          onClick={() => setActiveTab(ActiveTab.MyBets)}
+          onClick={() => {
+            onTabChange(ActiveTab.MyBets);
+          }}
         >
           Bets
         </button>
@@ -37,7 +44,9 @@ const ListView: React.FC<ListViewProps> = ({ filters }) => {
               ? "bg-violet-500"
               : "text-opacity-50 border-violet-800 "
           } hover:bg-violet-600`}
-          onClick={() => setActiveTab(ActiveTab.MyTransactions)}
+          onClick={() => {
+            onTabChange(ActiveTab.MyTransactions);
+          }}
         >
           Transactions
         </button>

@@ -1,27 +1,51 @@
-import React, { useState } from "react";
-import { BetStatus, TransactionType } from "../utils/constants";
+import React, { useEffect, useState } from "react";
+import {
+  ActiveTab,
+  BetStatus,
+  FiltersProps,
+  TransactionType,
+} from "../utils/constants";
 
 interface FilterProps {
-  activeTab: "myBets" | "myTransactions";
-  onChange: (value: string) => void;
+  activeTab: ActiveTab;
+  filters: FiltersProps;
+  onChange: (filters: FiltersProps) => void;
 }
 
-const Filter: React.FC<FilterProps> = ({ activeTab, onChange }) => {
+const Filter: React.FC<FilterProps> = ({ activeTab, filters, onChange }) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+
   const filterOptions = activeTab === "myBets" ? BetStatus : TransactionType;
+  console.log("🔥 :: activeTab ::", activeTab);
+
+  // Reset selected filter when activeTab changes
+  useEffect(() => {
+    setSelectedFilter(null); // Reset selected filter on tab change
+  }, [activeTab]);
 
   const handleButtonClick = (value: string) => {
-    if (selectedFilter === value) {
-      setSelectedFilter(null); // Deselect if it's already selected
-      onChange(""); // Clear the filter
+    const newFilters: FiltersProps = { ...filters };
+
+    if (activeTab === "myBets") {
+      newFilters.status = value;
     } else {
-      setSelectedFilter(value); // Set the new filter
-      onChange(value); // Pass the selected filter to the parent
+      newFilters.type = value;
     }
+
+    if (selectedFilter === value) {
+      setSelectedFilter(null);
+      newFilters.status = undefined;
+      newFilters.type = undefined;
+    } else {
+      setSelectedFilter(value);
+    }
+
+    onChange(newFilters);
   };
 
   return (
     <div>
+      <h3>{activeTab === "myBets" ? "Filter by Status" : "Filter by Type"}</h3>
       {Object.values(filterOptions).map((filterValue) => (
         <button
           key={filterValue}
