@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import { ActiveTab, FiltersProps } from "../utils/constants";
-import MyBets from "./BetsList";
 import Filter from "./Filter";
+import MyBets from "./MyBets";
 import MyTransactions from "./MyTransactions";
 
 const ListView: React.FC = () => {

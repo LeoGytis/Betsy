@@ -25,7 +25,7 @@ export const getBetsList = async (
   status?: string,
   betId?: string,
   page: number = 1,
-  limit: number = 100
+  limit: number = 5
 ) => {
   let url = `/my-bets?page=${page}&limit=${limit}`;
 
