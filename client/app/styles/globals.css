@@ -14,7 +14,7 @@
 
 /* Light theme */
 html[data-theme="light"] {
-  --background: #d5d5fd;
+  --background: #ffffff;
   --foreground: #171717;
   --color-primary: #6d3bbd;
   --color-secondary: #a8cf1b;

@@ -34,7 +34,7 @@ const MyTransactions: React.FC<MyTransactionsProps> = ({ filters }) => {
   }
 
   return (
-    <div className="w-full flex flex-col space-y-4 p-4 border  rounded">
+    <div className="w-full flex flex-col gap-4">
       {transactions.length === 0 ? (
         <div>No bets available</div>
       ) : (

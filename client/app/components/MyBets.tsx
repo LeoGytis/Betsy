@@ -21,7 +21,6 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
   useEffect(() => {
     getBetsList(filters.status)
       .then((data) => {
-        console.log("🔥 :: data ::", data);
         setBets(data.data);
         setLoading(false);
       })
@@ -58,7 +57,7 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
   }
 
   return (
-    <div className="w-full flex flex-col space-y-4 p-4 border  rounded">
+    <div className="w-full flex flex-col gap-4">
       {filteredBets.length === 0 ? (
         <div>No bets available</div>
       ) : (
