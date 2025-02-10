@@ -5,11 +5,17 @@ import Filter from "./components/Filter";
 import ListView from "./components/ListView";
 import NavBar from "./components/NavBar";
 import { getBetsList } from "./services/bettingService";
-import { ErrorResponse } from "./utils/constants";
+import { ActiveTab, ErrorResponse, FiltersProps } from "./utils/constants";
 import { getUserName } from "./utils/utils";
 
 const HomePage: React.FC = () => {
   const [userName, setUserName] = useState<string | null>(null);
+  const [filters, setFilters] = useState<FiltersProps>({
+    type: "bet", // Example type
+    status: "win", // Example status
+  });
+
+  const [activeTab, setActiveTab] = useState<ActiveTab>(ActiveTab.MyBets);
 
   useEffect(() => {
     getBetsList()
@@ -25,15 +31,26 @@ const HomePage: React.FC = () => {
       });
   }, []);
 
+  const handleTabChange = (newActiveTab: ActiveTab) => {
+    setActiveTab(newActiveTab);
+    console.log("Active Tab changed to:", newActiveTab);
+  };
+
   return (
     <>
       <NavBar userName={userName} />
       <div className="w-full flex gap-8 mt-6">
         {userName ? (
           <>
-            <BetForm />
-            <Filter activeTab="myBets" />
-            <ListView />
+            <div className="w-full flex flex-col gap-4">
+              <BetForm />
+              <Filter />
+            </div>
+            <ListView
+              activeTab={activeTab}
+              onTabChange={handleTabChange}
+              filters={filters}
+            />
           </>
         ) : (
           <div>Welcome to Betsy!</div>

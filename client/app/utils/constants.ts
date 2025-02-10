@@ -48,6 +48,11 @@ export const typeColor: Record<TransactionType, Color> = {
   [TransactionType.Win]: Color.Green,
 };
 
+export interface FiltersProps {
+  type?: string;
+  status?: string;
+}
+
 export enum ActiveTab {
   MyBets = "myBets",
   MyTransactions = "myTransactions",

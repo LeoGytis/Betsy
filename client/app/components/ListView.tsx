@@ -1,21 +1,18 @@
 "use client";
 import { useEffect, useState } from "react";
-import { ActiveTab } from "../utils/constants";
+import { ActiveTab, FiltersProps } from "../utils/constants";
 import MyBets from "./BetsList";
 import MyTransactions from "./MyTransactions";
 
-export interface FiltersProps {
-  type?: string;
-  status?: string;
-}
-
 interface ListViewProps {
-  onTabChange: (activeTab: "myBets" | "myTransactions") => void;
+  activeTab: ActiveTab;
+  onTabChange: (activeTab: ActiveTab) => void;
   filters: FiltersProps;
 }
 const ListView: React.FC<ListViewProps> = ({ filters }) => {
   const [activeTab, setActiveTab] = useState<ActiveTab>(ActiveTab.MyBets);
   const [appliedFilters, setAppliedFilters] = useState<FiltersProps>(filters);
+  console.log("🔥 :: appliedFilters ::", appliedFilters);
 
   useEffect(() => {
     setAppliedFilters(filters);
