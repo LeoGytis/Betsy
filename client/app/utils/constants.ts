@@ -1,5 +1,10 @@
 export const BASE_URL = "http://localhost:3000";
 
+export interface ErrorResponse {
+  status: number;
+  message: string;
+}
+
 export interface RegisterUserProps {
   name: string;
   email: string;

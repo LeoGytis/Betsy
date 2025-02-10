@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useBalance } from "../hooks/useBalance";
 import { placeBet } from "../services/bettingService";
+import { ErrorResponse } from "../utils/constants";
 
 interface BetFormProps {
   amount: number;
@@ -29,7 +30,7 @@ const BetForm = () => {
           setBalance(res.balance);
         }
       })
-      .catch((error: { message: string }) => {
+      .catch((error: ErrorResponse) => {
         setMessage(error.message);
       })
       .finally(() => {

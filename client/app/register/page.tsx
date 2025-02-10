@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { registerUser } from "../services/authService";
-import { RegisterUserProps } from "../utils/constants";
+import { ErrorResponse, RegisterUserProps } from "../utils/constants";
 import { registerSchema } from "../utils/validationSchemas";
 
 const RegisterForm: React.FC = () => {
@@ -26,11 +26,11 @@ const RegisterForm: React.FC = () => {
     registerUser(formData)
       .then(() => {
         setMessage("Successfully registered a new user.");
-        // for dev faster login
+        // for faster dev login
         // loginUser({ email: formData.email, password: formData.password });
         router.push("/");
       })
-      .catch((error: { message: string }) => {
+      .catch((error: ErrorResponse) => {
         setMessage(error.message);
       })
       .finally(() => {
@@ -39,7 +39,7 @@ const RegisterForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto border border-violet-500 rounded py-10 px-24">
+    <div className="max-w-lg mx-auto text-violet-500 border border-violet-800 rounded py-10 px-24">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-4"

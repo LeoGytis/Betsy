@@ -1,4 +1,4 @@
-import { BASE_URL } from "../utils/constants";
+import { BASE_URL, ErrorResponse } from "../utils/constants";
 
 interface ApiRequestOptions {
   method?: string;
@@ -30,7 +30,12 @@ const apiRequest = async (
 
   if (!response.ok) {
     const errorData = await response.json();
-    throw new Error(errorData.message || "API request failed");
+    // throw new Error(errorData.message || "API request failed");
+    // throw new Error(`Status: ${errorData.status}, Message: ${errorData.message || "API request failed"}`);
+    throw {
+      status: response.status,
+      message: errorData.message || "API request failed",
+    } as ErrorResponse;
   }
 
   return response.json();

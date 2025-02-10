@@ -1,3 +1,4 @@
+import { ErrorResponse } from "../utils/constants";
 import apiRequest from "./apiService";
 
 interface PlaceBetResponse {
@@ -15,7 +16,7 @@ export const placeBet = (amount: number): Promise<PlaceBetResponse> => {
     .then((data) => {
       return data;
     })
-    .catch((error: { message: string }) => {
+    .catch((error: ErrorResponse) => {
       throw new Error(error.message || "Failed to bet");
     });
 };
@@ -49,7 +50,7 @@ export const deleteBet = async (betId: string) => {
     .then((data) => {
       return data;
     })
-    .catch((error) => {
+    .catch((error: ErrorResponse) => {
       throw new Error(error.message || "Failed to cancel bet");
     });
 };

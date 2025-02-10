@@ -3,13 +3,24 @@ import { useEffect, useState } from "react";
 import BetForm from "./components/BetForm";
 import ListView from "./components/ListView";
 import NavBar from "./components/NavBar";
+import { getBetsList } from "./services/bettingService";
+import { ErrorResponse } from "./utils/constants";
 import { getUserName } from "./utils/utils";
 
 const HomePage: React.FC = () => {
   const [userName, setUserName] = useState<string | null>(null);
 
   useEffect(() => {
-    setUserName(getUserName());
+    getBetsList()
+      .then(() => {
+        setUserName(getUserName());
+      })
+      .catch((error: ErrorResponse) => {
+        if (error.status === 401) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("userName");
+        }
+      });
   }, []);
 
   return (

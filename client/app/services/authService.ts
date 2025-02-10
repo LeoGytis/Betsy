@@ -1,4 +1,8 @@
-import { RegisterUserProps, UserLoginProps } from "../utils/constants";
+import {
+  ErrorResponse,
+  RegisterUserProps,
+  UserLoginProps,
+} from "../utils/constants";
 import apiRequest from "./apiService";
 
 export interface RegisterUserResponse {
@@ -27,7 +31,7 @@ export const registerUser = ({
     .then((data) => {
       return data;
     })
-    .catch((error: { message: string }) => {
+    .catch((error: ErrorResponse) => {
       throw new Error(error.message || "Registration failed");
     });
 };
@@ -45,7 +49,7 @@ export const loginUser = ({
       localStorage.setItem("userName", data.name);
       return data;
     })
-    .catch((error: { message: string }) => {
+    .catch((error: ErrorResponse) => {
       throw new Error(error.message || "Login failed");
     });
 };

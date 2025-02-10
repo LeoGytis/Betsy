@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { deleteBet, getBetsList } from "../services/bettingService";
-import { BetStatus, statusColor } from "../utils/constants";
+import { BetStatus, ErrorResponse, statusColor } from "../utils/constants";
 import { formatDate } from "../utils/utils";
 
 import { FaDice } from "react-icons/fa6";
@@ -24,7 +24,7 @@ const MyBets: React.FC = () => {
         setBets(data);
         setLoading(false);
       })
-      .catch((error: { message: string }) => {
+      .catch((error: ErrorResponse) => {
         setError(error.message);
         setLoading(false);
       });
@@ -39,7 +39,7 @@ const MyBets: React.FC = () => {
           )
         );
       })
-      .catch((error: { message: string }) => {
+      .catch((error: ErrorResponse) => {
         setError(error.message);
       });
   };

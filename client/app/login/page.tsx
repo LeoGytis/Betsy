@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useBalance } from "../hooks/useBalance";
 import { loginUser } from "../services/authService";
-import { UserLoginProps } from "../utils/constants";
+import { ErrorResponse, UserLoginProps } from "../utils/constants";
 import { loginSchema } from "../utils/validationSchemas";
 
 const Login = () => {
@@ -35,7 +35,7 @@ const Login = () => {
         setMessage("Welcome to Betsy!");
         router.push("/");
       })
-      .catch((error: { message: string }) => {
+      .catch((error: ErrorResponse) => {
         setMessage(error.message);
       })
       .finally(() => {
@@ -44,7 +44,7 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto border border-violet-500 rounded py-10 px-24">
+    <div className="max-w-lg mx-auto text-violet-500 border border-violet-800 rounded py-10 px-24">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-4"

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GiCrownedHeart } from "react-icons/gi";
 import { getMyTransactions } from "../services/transiactionsService";
-import { TransactionType, typeColor } from "../utils/constants";
+import { ErrorResponse, TransactionType, typeColor } from "../utils/constants";
 import { formatDate } from "../utils/utils";
 
 interface TransactionProps {
@@ -22,7 +22,7 @@ const MyTransactions: React.FC = () => {
         setTransactions(data);
         setLoading(false);
       })
-      .catch((error: { message: string }) => {
+      .catch((error: ErrorResponse) => {
         setError(error.message);
         setLoading(false);
       });

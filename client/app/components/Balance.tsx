@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BASE_URL } from "../utils/constants";
+import { BASE_URL, ErrorResponse } from "../utils/constants";
 
 const fetchBalance = async () => {
   const response = await fetch(`${BASE_URL}/my-transactions`);
@@ -18,7 +18,7 @@ const Balance: React.FC = () => {
       .then((data) => {
         setBalance(data.balance);
       })
-      .catch((error: { message: string }) => {
+      .catch((error: ErrorResponse) => {
         setError(error.message);
       });
   }, []);
