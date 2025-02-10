@@ -1,11 +1,9 @@
 "use client";
-import SvgIcon from "@/public/icons/GirlIcon";
 import { useRouter } from "next/navigation";
-import { GiQueenCrown } from "react-icons/gi";
+import { GiRollingDices } from "react-icons/gi";
 import { useBalance } from "../hooks/useBalance";
 import { formatAmount } from "../utils/utils";
 import ThemeSwitch from "./ThemeSwitch";
-
 interface NavBarProps {
   userName?: string | null;
 }
@@ -16,9 +14,10 @@ const NavBar: React.FC<NavBarProps> = ({ userName }) => {
 
   return (
     <div className="relative flex flex-col lg:flex-row justify-between items-center gap-2 text-primary font-medium border rounded bg-secondary p-4">
-      {/* <Image src="/bet_logo.png" alt="logo" fill objectFit="cover" /> */}
-      <GiQueenCrown className="w-16 h-16" />
-      <SvgIcon className="w-16 h-16 text-red-500" />
+      <div className="flex items-center">
+        <GiRollingDices className="w-16 h-16" />
+        <span className="text-3xl">Betsy</span>
+      </div>
       <div>{formatAmount(balance)}</div>
       {!userName ? (
         <div className="flex gap-2 text-lg text-primary">
