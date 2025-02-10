@@ -7,21 +7,19 @@
     --background: #111111;
     --foreground: #ededed;
     --color-primary: #fff;
-    --color-border: #6b21a8;
-    --color-switch: #6b21a8;
+    --color-border: #5b21b6;
+    --color-switch: #5b21b6;
   }
 }
 
 /* Light theme */
 html[data-theme="light"] {
-  --background: #f8f8f8;
+  --background: #d5d5fd;
   --foreground: #171717;
-  --color-primary: #fff;
-  --color-border: #6b21a8;
-  --color-switch: #6b21a8;
+  --color-primary: #f1f1f1;
+  --color-border: #5b21b6;
+  --color-switch: #5b21b6;
 }
-
-/* violet-800 = #6B21A8 */
 
 body {
   color: var(--foreground);

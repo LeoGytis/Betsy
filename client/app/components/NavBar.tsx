@@ -13,7 +13,7 @@ const NavBar: React.FC<NavBarProps> = ({ userName }) => {
   const { balance } = useBalance();
 
   return (
-    <div className="flex justify-between items-center text-2xl font-medium text-violet-500 border border-violet-800 rounded p-4">
+    <div className="relative flex justify-between items-center text-2xl font-medium text-violet-500 border border-violet-800 rounded p-4">
       <div className="relative w-12 h-12">
         <Image src="/bet_logo.png" alt="logo" fill objectFit="cover" />
       </div>
@@ -34,11 +34,9 @@ const NavBar: React.FC<NavBarProps> = ({ userName }) => {
           </button>
         </div>
       ) : (
-        <div className="relative self-end">
-          <ThemeSwitch />
-          <span className="text-2xl font-medium">{userName}</span>
-        </div>
+        <span className="text-2xl font-medium">{userName}</span>
       )}
+      <ThemeSwitch />
     </div>
   );
 };

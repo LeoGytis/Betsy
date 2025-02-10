@@ -10,6 +10,7 @@ import { getUserName } from "./utils/utils";
 const HomePage: React.FC = () => {
   const [userName, setUserName] = useState<string | null>(null);
 
+  // Checks if able to fetch list for authentication purposes
   useEffect(() => {
     getBetsList()
       .then(() => {

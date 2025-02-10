@@ -21,6 +21,7 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
   useEffect(() => {
     getBetsList(filters.status)
       .then((data) => {
+        console.log("🔥 :: data ::", data);
         setBets(data.data);
         setLoading(false);
       })
