@@ -6,9 +6,9 @@
   html {
     --background: #111111;
     --foreground: #ededed;
-    --color-primary: #fff;
+    --color-primary: #5b21b6;
+    --color-secondary: #a8cf1b;
     --color-border: #5b21b6;
-    --color-switch: #5b21b6;
   }
 }
 
@@ -16,9 +16,9 @@
 html[data-theme="light"] {
   --background: #d5d5fd;
   --foreground: #171717;
-  --color-primary: #f1f1f1;
-  --color-border: #5b21b6;
-  --color-switch: #5b21b6;
+  --color-primary: #6d3bbd;
+  --color-secondary: #a8cf1b;
+  --color-border: #b65d21;
 }
 
 body {

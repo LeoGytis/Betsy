@@ -12,6 +12,9 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      borderColor: {
+        custom: "var(--color-border)",
+      },
     },
   },
   plugins: [],
