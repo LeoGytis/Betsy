@@ -13,6 +13,13 @@ export interface BetProps {
   createdAt: Date;
 }
 
+export interface TransactionProps {
+  id: string;
+  type: TransactionType;
+  amount: number;
+  createdAt: Date;
+}
+
 export interface RegisterUserProps {
   name: string;
   email: string;

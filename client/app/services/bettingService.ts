@@ -24,7 +24,8 @@ export const placeBet = (amount: number): Promise<PlaceBetResponse> => {
 export const getBetsList = async (
   status?: string,
   page: number = 1,
-  limit: number = 2
+  limit: number = 2,
+  id?: string
 ): Promise<{
   data: BetProps[];
   total: number;
@@ -34,6 +35,10 @@ export const getBetsList = async (
   let url = `/my-bets?page=${page}&limit=${limit}`;
   if (status) {
     url += `&status=${status}`;
+  }
+
+  if (id) {
+    url += `&id=${id}`;
   }
 
   const response = await apiRequest(url);

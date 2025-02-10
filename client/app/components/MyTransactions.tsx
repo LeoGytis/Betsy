@@ -1,22 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { GiCrownedHeart } from "react-icons/gi";
 import { getMyTransactions } from "../services/transiactionsService";
-import { ErrorResponse, TransactionType, typeColor } from "../utils/constants";
+import { ErrorResponse, TransactionProps, typeColor } from "../utils/constants";
 import { formatDate } from "../utils/utils";
-
-interface TransactionProps {
-  id: string;
-  type: TransactionType;
-  amount: number;
-  createdAt: Date;
-}
 
 interface MyTransactionsProps {
   filters: { type?: string };
 }
 
 const MyTransactions: React.FC<MyTransactionsProps> = ({ filters }) => {
-  console.log("🔥 :: filterssss ::", filters);
   const [transactions, setTransactions] = useState<TransactionProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -24,14 +16,14 @@ const MyTransactions: React.FC<MyTransactionsProps> = ({ filters }) => {
   useEffect(() => {
     getMyTransactions(filters.type)
       .then((data) => {
-        setTransactions(data);
+        setTransactions(data.data);
         setLoading(false);
       })
       .catch((error: ErrorResponse) => {
         setError(error.message);
         setLoading(false);
       });
-  }, [filters.type]);
+  }, [filters]);
 
   if (loading) {
     return <div>Loading...</div>;
