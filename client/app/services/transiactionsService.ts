@@ -4,7 +4,7 @@ import apiRequest from "./apiService";
 export const getMyTransactions = async (
   page: number = 1,
   type?: string,
-  limit: number = 4,
+  limit: number = 20,
   id?: string
 ): Promise<{
   data: TransactionProps[];

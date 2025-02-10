@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { GiQueenCrown } from "react-icons/gi";
 import { useBalance } from "../hooks/useBalance";
+import { formatAmount } from "../utils/utils";
 import ThemeSwitch from "./ThemeSwitch";
 
 interface NavBarProps {
@@ -16,7 +17,7 @@ const NavBar: React.FC<NavBarProps> = ({ userName }) => {
     <div className="relative flex flex-col lg:flex-row justify-between items-center gap-2 text-primary font-medium border rounded bg-secondary p-4">
       {/* <Image src="/bet_logo.png" alt="logo" fill objectFit="cover" /> */}
       <GiQueenCrown className="w-16 h-16" />
-      <div>€{balance}</div>
+      <div>{formatAmount(balance)}</div>
       {!userName ? (
         <div className="flex gap-2 text-lg text-primary">
           <button

@@ -8,7 +8,7 @@ import {
   ErrorResponse,
   statusColor,
 } from "../utils/constants";
-import { formatDate } from "../utils/utils";
+import { formatAmount, formatDate } from "../utils/utils";
 
 interface MyBetsProps {
   filters: { status?: string };
@@ -79,9 +79,11 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
               >
                 {bet.status}
 
-                {bet.status === BetStatus.Win ? <p>€{bet.winAmount}!</p> : null}
+                {bet.status === BetStatus.Win ? (
+                  <p>{formatAmount(bet.winAmount)}!</p>
+                ) : null}
               </div>
-              <p>Bet: €{bet.amount}</p>
+              <p>Bet: {formatAmount(bet.amount)}</p>
               <p>Date: {formatDate(bet.createdAt)}</p>
               <p>ID: {bet.id}</p>
             </div>

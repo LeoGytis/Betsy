@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useBalance } from "../hooks/useBalance";
 import { placeBet } from "../services/bettingService";
 import { ErrorResponse } from "../utils/constants";
+import { formatAmount } from "../utils/utils";
 
 interface BetFormProps {
   amount: number;
@@ -25,7 +26,7 @@ const BetForm = () => {
     setMessage("");
     placeBet(amount)
       .then((res) => {
-        setMessage(`You have made a bet of €${amount}`);
+        setMessage(`You have made a bet of ${formatAmount(amount)}`);
         if (res.balance) {
           setBalance(res.balance);
         }
@@ -66,11 +67,10 @@ const BetForm = () => {
           >
             BET
           </button>
-        </div>
-
-        <div className="text-sm text-center text-red-500">
-          {errors.amount && <p>{errors.amount.message} </p>}
-          {message && <p>{message}</p>}
+          <div className="text-sm text-center text-red-500">
+            {errors.amount && <p>{errors.amount.message} </p>}
+            {message && <p>{message}</p>}
+          </div>
         </div>
       </form>
     </div>

@@ -10,3 +10,10 @@ export const getUserName = (): string | null => {
 
   return token && userName ? userName : null;
 };
+
+export const formatAmount = (amount: number) => {
+  return new Intl.NumberFormat("en-IE", {
+    style: "currency",
+    currency: "EUR",
+  }).format(amount);
+};

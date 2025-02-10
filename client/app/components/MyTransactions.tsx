@@ -3,7 +3,7 @@ import { GiCrownedHeart } from "react-icons/gi";
 import ReactPaginate from "react-paginate";
 import { getMyTransactions } from "../services/transiactionsService";
 import { ErrorResponse, TransactionProps, typeColor } from "../utils/constants";
-import { formatDate } from "../utils/utils";
+import { formatAmount, formatDate } from "../utils/utils";
 
 interface MyTransactionsProps {
   filters: { type?: string };
@@ -57,7 +57,7 @@ const MyTransactions: React.FC<MyTransactionsProps> = ({ filters }) => {
               >
                 {transaction.type}
               </span>
-              <p>Amount: €{transaction.amount}</p>
+              <p>Amount: {formatAmount(transaction.amount)}</p>
               <p>Date: {formatDate(transaction.createdAt)}</p>
               <p>ID: {transaction.id}</p>
             </div>
