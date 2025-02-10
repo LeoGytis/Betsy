@@ -22,9 +22,9 @@ export const placeBet = (amount: number): Promise<PlaceBetResponse> => {
 };
 
 export const getBetsList = async (
-  status?: string,
   page: number = 1,
-  limit: number = 2,
+  status?: string,
+  limit: number = 4,
   id?: string
 ): Promise<{
   data: BetProps[];

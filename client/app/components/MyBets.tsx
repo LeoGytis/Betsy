@@ -22,11 +22,11 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
   const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
-    const page = currentPage + 1; // react-paginate uses zero-based index
-    getBetsList(filters.status, page, 2) // Assuming you want 2 bets per page
+    const page = currentPage + 1;
+    getBetsList(page, filters.status)
       .then((data) => {
         setBets(data.data);
-        setTotalPages(Math.ceil(data.total / 2)); // Total pages based on the total count and limit
+        setTotalPages(Math.ceil(data.total / 2));
         setLoading(false);
       })
       .catch((error: ErrorResponse) => {
@@ -107,11 +107,11 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
       <ReactPaginate
         pageCount={totalPages}
         onPageChange={handlePageChange}
-        containerClassName={"self-center flex gap-3 text-primary mt-2"}
+        containerClassName={"self-center flex gap-3 text-lg text-primary mt-2"}
         activeClassName={"border-b-2 bg-primary text-foreground px-2 rounded"}
         pageClassName={"text-primary"}
-        previousLabel={<span>&#60;</span>}
-        nextLabel={<span>&#62;</span>}
+        previousLabel={<span>{"<"}</span>}
+        nextLabel={<span>{">"}</span>}
         previousClassName={"mr-2"}
         nextClassName={"ml-2"}
       />

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { GiCrownedHeart } from "react-icons/gi";
+import ReactPaginate from "react-paginate";
 import { getMyTransactions } from "../services/transiactionsService";
 import { ErrorResponse, TransactionProps, typeColor } from "../utils/constants";
 import { formatDate } from "../utils/utils";
@@ -12,18 +13,27 @@ const MyTransactions: React.FC<MyTransactionsProps> = ({ filters }) => {
   const [transactions, setTransactions] = useState<TransactionProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
-    getMyTransactions(filters.type)
+    const page = currentPage + 1;
+
+    getMyTransactions(page, filters.type)
       .then((data) => {
         setTransactions(data.data);
+        setTotalPages(Math.ceil(data.total / data.limit));
         setLoading(false);
       })
       .catch((error: ErrorResponse) => {
         setError(error.message);
         setLoading(false);
       });
-  }, [filters]);
+  }, [filters, currentPage]);
+
+  const handlePageChange = ({ selected }: { selected: number }) => {
+    setCurrentPage(selected);
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -36,7 +46,7 @@ const MyTransactions: React.FC<MyTransactionsProps> = ({ filters }) => {
   return (
     <div className="w-full flex flex-col gap-4">
       {transactions.length === 0 ? (
-        <div>No bets available</div>
+        <div>No transactions available</div>
       ) : (
         transactions.map((transaction) => (
           <div
@@ -59,6 +69,17 @@ const MyTransactions: React.FC<MyTransactionsProps> = ({ filters }) => {
           </div>
         ))
       )}
+      <ReactPaginate
+        pageCount={totalPages}
+        onPageChange={handlePageChange}
+        containerClassName={"self-center flex gap-3 text-lg text-primary mt-2"}
+        activeClassName={"border-b-2 bg-primary text-foreground px-2 rounded"}
+        pageClassName={"text-primary"}
+        previousLabel={<span>{"<"}</span>}
+        nextLabel={<span>{">"}</span>}
+        previousClassName={"mr-2"}
+        nextClassName={"ml-2"}
+      />
     </div>
   );
 };

@@ -2,10 +2,10 @@ import { TransactionProps } from "../utils/constants";
 import apiRequest from "./apiService";
 
 export const getMyTransactions = async (
-  type?: string,
-  id?: string,
   page: number = 1,
-  limit: number = 100
+  type?: string,
+  limit: number = 4,
+  id?: string
 ): Promise<{
   data: TransactionProps[];
   total: number;
