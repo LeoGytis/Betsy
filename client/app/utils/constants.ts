@@ -5,6 +5,14 @@ export interface ErrorResponse {
   message: string;
 }
 
+export interface BetProps {
+  id: string;
+  status: BetStatus;
+  amount: number;
+  winAmount: number;
+  createdAt: Date;
+}
+
 export interface RegisterUserProps {
   name: string;
   email: string;

@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { FaDice } from "react-icons/fa6";
 import { deleteBet, getBetsList } from "../services/bettingService";
-import { BetStatus, ErrorResponse, statusColor } from "../utils/constants";
+import {
+  BetProps,
+  BetStatus,
+  ErrorResponse,
+  statusColor,
+} from "../utils/constants";
 import { formatDate } from "../utils/utils";
-
-export interface BetProps {
-  id: string;
-  status: BetStatus;
-  amount: number;
-  winAmount: number;
-  createdAt: Date;
-}
 
 interface MyBetsProps {
   filters: { status?: string };
@@ -24,7 +21,7 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
   useEffect(() => {
     getBetsList(filters.status)
       .then((data) => {
-        setBets(data.bets);
+        setBets(data.data);
         setLoading(false);
       })
       .catch((error: ErrorResponse) => {

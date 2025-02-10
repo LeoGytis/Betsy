@@ -1,5 +1,4 @@
-import { BetProps } from "../components/MyBets";
-import { ErrorResponse } from "../utils/constants";
+import { BetProps, ErrorResponse } from "../utils/constants";
 import apiRequest from "./apiService";
 
 interface PlaceBetResponse {
@@ -27,7 +26,7 @@ export const getBetsList = async (
   page: number = 1,
   limit: number = 2
 ): Promise<{
-  bets: BetProps[];
+  data: BetProps[];
   total: number;
   page: number;
   limit: number;
@@ -39,7 +38,7 @@ export const getBetsList = async (
 
   const response = await apiRequest(url);
   return {
-    bets: response.data,
+    data: response.data,
     total: response.total,
     page: response.page,
     limit: response.limit,
