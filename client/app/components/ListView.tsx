@@ -1,12 +1,25 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ActiveTab } from "../utils/constants";
 import MyBets from "./BetsList";
 import MyTransactions from "./MyTransactions";
 
-const ListView = () => {
-  const [activeTab, setActiveTab] = useState<"myBets" | "myTransactions">(
-    "myBets"
-  );
+export interface FiltersProps {
+  type?: string;
+  status?: string;
+}
+
+interface ListViewProps {
+  onTabChange: (activeTab: "myBets" | "myTransactions") => void;
+  filters: FiltersProps;
+}
+const ListView: React.FC<ListViewProps> = ({ filters }) => {
+  const [activeTab, setActiveTab] = useState<ActiveTab>(ActiveTab.MyBets);
+  const [appliedFilters, setAppliedFilters] = useState<FiltersProps>(filters);
+
+  useEffect(() => {
+    setAppliedFilters(filters);
+  }, [filters]);
 
   return (
     <div className="w-full flex flex-col gap-2 items-center">
@@ -17,7 +30,7 @@ const ListView = () => {
               ? "bg-violet-500"
               : "text-opacity-50 border-violet-800"
           } hover:bg-violet-600`}
-          onClick={() => setActiveTab("myBets")}
+          onClick={() => setActiveTab(ActiveTab.MyBets)}
         >
           Bets
         </button>
@@ -27,7 +40,7 @@ const ListView = () => {
               ? "bg-violet-500"
               : "text-opacity-50 border-violet-800 "
           } hover:bg-violet-600`}
-          onClick={() => setActiveTab("myTransactions")}
+          onClick={() => setActiveTab(ActiveTab.MyTransactions)}
         >
           Transactions
         </button>
@@ -35,6 +48,9 @@ const ListView = () => {
 
       {activeTab === "myBets" && <MyBets />}
       {activeTab === "myTransactions" && <MyTransactions />}
+
+      {/* {activeTab === "myBets" && <MyBets filters={appliedFilters} />} */}
+      {/* {activeTab === "myTransactions" && <MyTransactions filters={appliedFilters} />} */}
     </div>
   );
 };

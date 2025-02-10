@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import BetForm from "./components/BetForm";
+import Filter from "./components/Filter";
 import ListView from "./components/ListView";
 import NavBar from "./components/NavBar";
 import { getBetsList } from "./services/bettingService";
@@ -31,6 +32,7 @@ const HomePage: React.FC = () => {
         {userName ? (
           <>
             <BetForm />
+            <Filter activeTab="myBets" />
             <ListView />
           </>
         ) : (

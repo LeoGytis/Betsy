@@ -47,3 +47,8 @@ export const typeColor: Record<TransactionType, Color> = {
   [TransactionType.Cancel]: Color.Red,
   [TransactionType.Win]: Color.Green,
 };
+
+export enum ActiveTab {
+  MyBets = "myBets",
+  MyTransactions = "myTransactions",
+}
