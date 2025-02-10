@@ -3,16 +3,49 @@ const { faker } = require("@faker-js/faker");
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const cors = require("cors");
+const http = require("http");
+const WebSocket = require("ws");
 
 const app = express();
 const port = 3000;
 
+// Create an HTTP server and attach WebSocket
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server });
+
 // Enable CORS for all origins
 app.use(cors());
-
 app.use(express.json());
 
 const players = [];
+
+// WebSocket connection handler
+wss.on("connection", (ws) => {
+  console.log("New client connected");
+
+  ws.on("message", (message) => {
+    console.log(`Received: ${message}`);
+  });
+
+  ws.on("close", () => {
+    console.log("Client disconnected");
+  });
+});
+
+// Helper function to send updates to a specific player
+function sendPlayerUpdate(player) {
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(
+        JSON.stringify({
+          type: "balance_update",
+          id: player.id,
+          balance: player.balance,
+        })
+      );
+    }
+  });
+}
 
 app.post("/register", (req, res) => {
   const { name, email, password, confirmPassword } = req.body;
