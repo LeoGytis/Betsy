@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useBalance } from "../hooks/useBalance";
+import ThemeSwitch from "./ThemeSwitch";
 
 interface NavBarProps {
   userName?: string | null;
@@ -33,7 +34,10 @@ const NavBar: React.FC<NavBarProps> = ({ userName }) => {
           </button>
         </div>
       ) : (
-        <span className="text-2xl font-medium">{userName}</span>
+        <div className="relative self-end">
+          <ThemeSwitch />
+          <span className="text-2xl font-medium">{userName}</span>
+        </div>
       )}
     </div>
   );

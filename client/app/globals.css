@@ -2,16 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
+@layer base {
+  html {
     --background: #111111;
     --foreground: #ededed;
+    --color-primary: #fff;
+    --color-border: #6b21a8;
+    --color-switch: #6b21a8;
   }
+}
+
+/* Light theme */
+html[data-theme="light"] {
+  --background: #f8f8f8;
+  --foreground: #171717;
+  --color-primary: #fff;
+  --color-border: #6b21a8;
+  --color-switch: #6b21a8;
 }
 
 /* violet-800 = #6B21A8 */
