@@ -13,7 +13,7 @@ const NavBar: React.FC<NavBarProps> = ({ userName }) => {
   const { balance } = useBalance();
 
   return (
-    <div className="relative flex justify-between items-center text-primary font-medium border rounded bg-secondary p-4">
+    <div className="relative flex flex-col lg:flex-row justify-between items-center gap-2 text-primary font-medium border rounded bg-secondary p-4">
       <div className="relative w-12 h-12">
         <Image src="/bet_logo.png" alt="logo" fill objectFit="cover" />
       </div>

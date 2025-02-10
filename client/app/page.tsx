@@ -29,7 +29,6 @@ const HomePage: React.FC = () => {
   return (
     <>
       <NavBar userName={userName} />
-
       {userName ? (
         <div className="w-full flex flex-col lg:flex-row gap-6 mt-6">
           <BetForm />
