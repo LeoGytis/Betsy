@@ -13,7 +13,7 @@ export default {
         foreground: "var(--foreground)",
       },
       borderColor: {
-        custom: "var(--color-border)",
+        DEFAULT: "var(--color-border)",
       },
     },
   },

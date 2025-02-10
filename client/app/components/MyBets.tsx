@@ -58,7 +58,7 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
   }
 
   return (
-    <div className="w-full flex flex-col space-y-4 p-4 border border-violet-800 rounded">
+    <div className="w-full flex flex-col space-y-4 p-4 border  rounded">
       {filteredBets.length === 0 ? (
         <div>No bets available</div>
       ) : (

@@ -4,7 +4,7 @@
 
 @layer base {
   html {
-    --background: #111111;
+    --background: #141414;
     --foreground: #ededed;
     --color-primary: #5b21b6;
     --color-secondary: #a8cf1b;
@@ -18,7 +18,7 @@ html[data-theme="light"] {
   --foreground: #171717;
   --color-primary: #6d3bbd;
   --color-secondary: #a8cf1b;
-  --color-border: #b65d21;
+  --color-border: #6e6fa6;
 }
 
 body {

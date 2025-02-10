@@ -39,7 +39,7 @@ const RegisterForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto text-violet-500 border border-violet-800 rounded py-10 px-24">
+    <div className="max-w-lg mx-auto text-violet-500 border  rounded py-10 px-24">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-4"
