@@ -43,7 +43,7 @@ const ListView: React.FC = () => {
   );
 
   return (
-    <div className="w-full flex flex-col gap-4 items-center">
+    <div className="w-2/3 flex flex-col gap-4 items-center">
       <div className="w-full flex justify-between">
         {renderTabs(activeTab, setActiveTab)}
         <Filter
