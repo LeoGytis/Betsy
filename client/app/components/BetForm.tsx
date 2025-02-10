@@ -39,7 +39,7 @@ const BetForm = () => {
   };
 
   return (
-    <div className="w-full lg:w-1/3 sticky top-4 h-fit flex self-center lg:self-start justify-center items-center border rounded bg-secondary p-6">
+    <div className="w-full lg:w-1/3 sticky top-0 lg:top-4 h-fit flex self-center lg:self-start justify-center items-center border rounded bg-secondary p-6">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-6 justify-center items-center"

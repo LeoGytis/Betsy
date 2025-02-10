@@ -36,7 +36,7 @@ export enum Color {
   Green = "text-green-500 border-green-500 bg-green-500/20", // Win
   Red = "text-red-500 border-red-500 bg-red-500/20", // Lost
   Orange = "text-orange-500 border-orange-500 bg-orange-500/20", // Canceled
-  Violet = "text-primary border-primary", // Canceled
+  Violet = "text-primary border-primary bg-[#d3ebed]/50", // Canceled
 }
 
 export enum BetStatus {

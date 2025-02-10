@@ -14,12 +14,15 @@
 
 /* Light theme */
 html[data-theme="light"] {
-  --background: #ececec;
+  --background: #d3ebed;
   --foreground: #171717;
-  --color-primary: #5b21b6;
+  --color-primary: #25a69c;
   --color-secondary: #fff;
-  --color-border: #8b5cf6;
+  --color-border: #25a69c;
 }
+
+/* D3EBED */
+/* 25A69C */
 
 body {
   color: var(--foreground);
