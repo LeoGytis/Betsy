@@ -42,7 +42,7 @@ const Filter: React.FC<FilterProps> = ({ activeTab, filters, onChange }) => {
   };
 
   return (
-    <div className="flex justify-center items-end gap-2 borde border-red-5">
+    <div className="flex items-end gap-2">
       <h3 className="text-md text-primary mb-1">Filter by:</h3>
       <div className="flex gap-2">
         {Object.values(filterOptions).map((filterValue) => (

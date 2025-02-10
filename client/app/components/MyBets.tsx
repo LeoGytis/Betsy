@@ -80,7 +80,7 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
               <p>Date: {formatDate(bet.createdAt)}</p>
               <p>ID: {bet.id}</p>
             </div>
-            <div className="absolute bottom-4 right-4 flex flex-col gap-2 items-center">
+            <div className="absolute top-4 right-4 flex flex-col gap-2 items-center">
               <FaDice className="w-12 h-12 text-primary text-opacity-40" />
               {bet.status !== BetStatus.Canceled &&
                 bet.status !== BetStatus.Win && (
