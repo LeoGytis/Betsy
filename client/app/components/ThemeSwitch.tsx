@@ -12,7 +12,7 @@ const ThemeSwitch = () => {
   };
 
   return (
-    <div className="absolute -top-16 right-0">
+    <div className="absolute -top-14 right-0">
       <input
         onChange={handleToggle}
         className="switch-checkbox"

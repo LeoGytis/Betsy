@@ -49,7 +49,7 @@ const Filter: React.FC<FilterProps> = ({ activeTab, filters, onChange }) => {
           <button
             key={filterValue}
             onClick={() => handleButtonClick(filterValue)}
-            className={`text-sm border border-primary rounded transition-colors px-2 py-1 hover:bg-violet-600 hover:text-white ${
+            className={`text-sm border border-primary rounded transition-colors px-2 py-1 hover:bg-primary hover:text-white ${
               selectedFilter === filterValue
                 ? "bg-secondary"
                 : "text-opacity-50 "

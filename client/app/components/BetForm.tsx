@@ -60,7 +60,7 @@ const BetForm = () => {
 
         <button
           type="submit"
-          className="w-1/2 text px-4 py-2 bg-violet-800 hover:text-white rounded"
+          className="w-1/2 bg-primary border rounded hover:bg-transparent hover:text-primary px-4 py-2"
           disabled={loading}
         >
           BET
