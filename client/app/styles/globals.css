@@ -16,9 +16,9 @@
 html[data-theme="light"] {
   --background: #ececec;
   --foreground: #171717;
-  --color-primary: #ee6312;
+  --color-primary: #5b21b6;
   --color-secondary: #fff;
-  --color-border: #e05200;
+  --color-border: #8b5cf6;
 }
 
 body {
