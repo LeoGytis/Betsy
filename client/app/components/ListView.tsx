@@ -20,23 +20,23 @@ const ListView: React.FC = () => {
     activeTab: ActiveTab,
     onTabChange: (tab: ActiveTab) => void
   ) => (
-    <div className="flex gap-4">
+    <div className="flex gap-2">
       <button
-        className={`text-white border border-violet-500 rounded px-6 py-2 ${
+        className={`text-white border border-violet-500 rounded hover:bg-violet-600 hover:text-white px-6 py-2 ${
           activeTab === ActiveTab.MyBets
             ? "bg-violet-500"
             : "text-opacity-50 border-violet-800"
-        } hover:bg-violet-600`}
+        }`}
         onClick={() => onTabChange(ActiveTab.MyBets)}
       >
         Bets
       </button>
       <button
-        className={`text-white border border-violet-500 rounded px-6 py-2 ${
+        className={`text-white border border-violet-500 rounded hover:bg-violet-600 hover:text-white px-6 py-2 ${
           activeTab === ActiveTab.MyTransactions
             ? "bg-violet-500"
             : "text-opacity-50 border-violet-800"
-        } hover:bg-violet-600`}
+        } `}
         onClick={() => onTabChange(ActiveTab.MyTransactions)}
       >
         Transactions
@@ -46,13 +46,13 @@ const ListView: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col gap-2 items-center">
-      <div className="w-full flex justify-between items-center gap-4">
+      <div className="w-full flex justify-between">
+        {renderTabs(activeTab, setActiveTab)}
         <Filter
           activeTab={activeTab}
           onChange={handleFilterChange}
           filters={filters}
         />
-        {renderTabs(activeTab, setActiveTab)} {/* Use setActiveTab here */}
       </div>
 
       {activeTab === ActiveTab.MyBets && <MyBets filters={filters} />}

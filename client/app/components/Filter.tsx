@@ -14,7 +14,8 @@ interface FilterProps {
 
 const Filter: React.FC<FilterProps> = ({ activeTab, filters, onChange }) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
-  const filterOptions = activeTab === "myBets" ? BetStatus : TransactionType;
+  const filterOptions =
+    activeTab === ActiveTab.MyBets ? BetStatus : TransactionType;
 
   useEffect(() => {
     setSelectedFilter(null);
@@ -23,7 +24,7 @@ const Filter: React.FC<FilterProps> = ({ activeTab, filters, onChange }) => {
   const handleButtonClick = (value: string) => {
     const newFilters: FiltersProps = { ...filters };
 
-    if (activeTab === "myBets") {
+    if (activeTab === ActiveTab.MyBets) {
       newFilters.status = value;
     } else {
       newFilters.type = value;
@@ -41,24 +42,23 @@ const Filter: React.FC<FilterProps> = ({ activeTab, filters, onChange }) => {
   };
 
   return (
-    <div className="h-fit flex justify-center items-center border border-violet-800 rounded p-6">
-      <h3>{activeTab === "myBets" ? "Filter by Status" : "Filter by Type"}</h3>
-      {Object.values(filterOptions).map((filterValue) => (
-        <button
-          key={filterValue}
-          onClick={() => handleButtonClick(filterValue)}
-          style={{
-            backgroundColor:
-              selectedFilter === filterValue ? "lightblue" : "transparent",
-            border: "1px solid #ccc",
-            padding: "8px 16px",
-            margin: "5px",
-            cursor: "pointer",
-          }}
-        >
-          {filterValue}
-        </button>
-      ))}
+    <div className="flex justify-center items-end gap-2 borde border-red-5">
+      <h3 className="text-md text-violet-500 mb-1">Filter by:</h3>
+      <div className="flex gap-2">
+        {Object.values(filterOptions).map((filterValue) => (
+          <button
+            key={filterValue}
+            onClick={() => handleButtonClick(filterValue)}
+            className={`text-sm text-white border border-violet-500 rounded transition-colors px-2 py-1 hover:bg-violet-600 hover:text-white ${
+              selectedFilter === filterValue
+                ? "bg-violet-500"
+                : "text-opacity-50 border-violet-800"
+            }`}
+          >
+            {filterValue}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
