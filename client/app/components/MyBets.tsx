@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaDice } from "react-icons/fa6";
+import ReactPaginate from "react-paginate";
 import { deleteBet, getBetsList } from "../services/bettingService";
 import {
   BetProps,
@@ -17,18 +18,22 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
   const [bets, setBets] = useState<BetProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
-    getBetsList(filters.status)
+    const page = currentPage + 1; // react-paginate uses zero-based index
+    getBetsList(filters.status, page, 2) // Assuming you want 2 bets per page
       .then((data) => {
         setBets(data.data);
+        setTotalPages(Math.ceil(data.total / 2)); // Total pages based on the total count and limit
         setLoading(false);
       })
       .catch((error: ErrorResponse) => {
         setError(error.message);
         setLoading(false);
       });
-  }, [filters]);
+  }, [filters, currentPage]);
 
   const handleDelete = (betId: string) => {
     deleteBet(betId)
@@ -47,6 +52,10 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
   const filteredBets = filters.status
     ? bets.filter((bet) => bet.status === filters.status)
     : bets;
+
+  const handlePageChange = (selected: { selected: number }) => {
+    setCurrentPage(selected.selected);
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -95,6 +104,17 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
           </div>
         ))
       )}
+      <ReactPaginate
+        pageCount={totalPages}
+        onPageChange={handlePageChange}
+        containerClassName={"self-center flex gap-3 text-primary mt-2"}
+        activeClassName={"border-b-2 bg-primary text-foreground px-2 rounded"}
+        pageClassName={"text-primary"}
+        previousLabel={<span>&#60;</span>}
+        nextLabel={<span>&#62;</span>}
+        previousClassName={"mr-2"}
+        nextClassName={"ml-2"}
+      />
     </div>
   );
 };
