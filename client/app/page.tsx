@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import GirlIcon from "@/public/icons/GirlIcon";
 import { useEffect, useState } from "react";
 import BetForm from "./components/BetForm";
 import ListView from "./components/ListView";
@@ -35,14 +35,8 @@ const HomePage: React.FC = () => {
           <ListView />
         </div>
       ) : (
-        <div className="realtive lg:h-96 lg:w-96 mx-auto flex flex-col gap-8 justify-center items-center border-2 mt-8 p-2">
-          <Image
-            src="/betsy.svg"
-            alt="betsy_image"
-            width={500}
-            height={500}
-            layout="intrinsic"
-          />
+        <div className="lg:h-96 lg:w-96 mx-auto flex flex-col gap-8 justify-center items-center border-2 mt-8 p-2">
+          <GirlIcon className="text-primary" />
           <h1 className="text-3xl lg:text-6xl font-bold text-primary whitespace-nowrap">
             WELCOME TO BETSY!
           </h1>
