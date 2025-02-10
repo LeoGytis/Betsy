@@ -16,6 +16,7 @@ const HomePage: React.FC = () => {
         setUserName(getUserName());
       })
       .catch((error: ErrorResponse) => {
+        // If the user is not authenticated, remove the token and user name from local storage
         if (error.status === 401) {
           localStorage.removeItem("token");
           localStorage.removeItem("userName");
@@ -24,7 +25,7 @@ const HomePage: React.FC = () => {
   }, []);
 
   return (
-    <div className="mx-auto max-w-screen-xl p-8 md:p-12 lg:p-20 lg:py-12">
+    <>
       <NavBar userName={userName} />
       <div className="w-full flex gap-8 mt-6">
         {userName ? (
@@ -36,7 +37,7 @@ const HomePage: React.FC = () => {
           <div>Welcome to Betsy!</div>
         )}
       </div>
-    </div>
+    </>
   );
 };
 

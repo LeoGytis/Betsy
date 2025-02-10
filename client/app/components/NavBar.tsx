@@ -10,14 +10,13 @@ interface NavBarProps {
 const NavBar: React.FC<NavBarProps> = ({ userName }) => {
   const router = useRouter();
   const { balance } = useBalance();
-  // const user = getUserName();
 
   return (
-    <div className="flex justify-between items-center text-violet-500 border border-violet-800 rounded p-4">
+    <div className="flex justify-between items-center text-2xl font-medium text-violet-500 border border-violet-800 rounded p-4">
       <div className="relative w-12 h-12">
         <Image src="/bet_logo.png" alt="logo" fill objectFit="cover" />
       </div>
-      <div className="text-white">Nav Balance{balance}</div>
+      <div>€{balance}</div>
       {!userName ? (
         <div className="flex gap-2">
           <button
@@ -34,7 +33,7 @@ const NavBar: React.FC<NavBarProps> = ({ userName }) => {
           </button>
         </div>
       ) : (
-        <span className="text-2xl text-violet-800 font-medium">{userName}</span>
+        <span className="text-2xl font-medium">{userName}</span>
       )}
     </div>
   );
