@@ -11,7 +11,6 @@ import { getUserName } from "./utils/utils";
 const HomePage: React.FC = () => {
   const [userName, setUserName] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<ActiveTab>(ActiveTab.MyBets);
-  console.log("🔥 :: activeTab ::", activeTab);
   const [filters, setFilters] = useState<FiltersProps>({});
 
   useEffect(() => {
@@ -29,16 +28,10 @@ const HomePage: React.FC = () => {
   }, []);
 
   const handleFilterChange = (newFilters: FiltersProps) => {
-    // Set the new filters state here
     setFilters((prevFilters) => ({
       ...prevFilters,
-      ...newFilters, // Update filters based on the new changes
+      ...newFilters,
     }));
-  };
-
-  const handleTabChange = (newActiveTab: ActiveTab) => {
-    setActiveTab(newActiveTab);
-    console.log("Active Tab changed to:", newActiveTab);
   };
 
   return (
@@ -49,17 +42,16 @@ const HomePage: React.FC = () => {
           <>
             <div className="w-full flex flex-col gap-4">
               <BetForm />
-              {/* Pass activeTab here to make sure the Filter component knows which tab is active */}
               <Filter
                 activeTab={activeTab}
                 onChange={handleFilterChange}
-                filters={filters} // Ensure the latest filters are passed to Filter
+                filters={filters}
               />
             </div>
             <ListView
               activeTab={activeTab}
-              onTabChange={handleTabChange}
-              filters={filters} // Ensure the latest filters are passed to ListView
+              onTabChange={(tab) => setActiveTab(tab)}
+              filters={filters}
             />
           </>
         ) : (

@@ -15,7 +15,6 @@ const ListView: React.FC<ListViewProps> = ({
   onTabChange,
   filters,
 }) => {
-  // const [activeTab, setActiveTab] = useState<ActiveTab>(ActiveTab.MyBets);
   const [appliedFilters, setAppliedFilters] = useState<FiltersProps>(filters);
   console.log("🔥 :: appliedFilters ::", appliedFilters);
 
