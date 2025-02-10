@@ -41,7 +41,7 @@ const Filter: React.FC<FilterProps> = ({ activeTab, filters, onChange }) => {
   };
 
   return (
-    <div>
+    <div className="h-fit flex justify-center items-center border border-violet-800 rounded p-6">
       <h3>{activeTab === "myBets" ? "Filter by Status" : "Filter by Type"}</h3>
       {Object.values(filterOptions).map((filterValue) => (
         <button

@@ -49,7 +49,6 @@ export const typeColor: Record<TransactionType, Color> = {
 };
 
 export interface FiltersProps {
-  id?: string;
   type?: string;
   status?: string;
 }

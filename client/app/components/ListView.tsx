@@ -1,58 +1,64 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ActiveTab, FiltersProps } from "../utils/constants";
 import MyBets from "./BetsList";
+import Filter from "./Filter";
 import MyTransactions from "./MyTransactions";
 
-interface ListViewProps {
-  activeTab: ActiveTab;
-  onTabChange: (activeTab: ActiveTab) => void;
-  filters: FiltersProps;
-}
+const ListView: React.FC = () => {
+  const [filters, setFilters] = useState<FiltersProps>({});
+  const [activeTab, setActiveTab] = useState<ActiveTab>(ActiveTab.MyBets);
 
-const ListView: React.FC<ListViewProps> = ({
-  activeTab,
-  onTabChange,
-  filters,
-}) => {
-  const [appliedFilters, setAppliedFilters] = useState<FiltersProps>(filters);
-  console.log("🔥 :: appliedFilters ::", appliedFilters);
+  const handleFilterChange = (newFilters: FiltersProps) => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      ...newFilters,
+    }));
+  };
 
-  useEffect(() => {
-    setAppliedFilters(filters);
-  }, [filters]);
+  const renderTabs = (
+    activeTab: ActiveTab,
+    onTabChange: (tab: ActiveTab) => void
+  ) => (
+    <div className="flex gap-4">
+      <button
+        className={`text-white border border-violet-500 rounded px-6 py-2 ${
+          activeTab === ActiveTab.MyBets
+            ? "bg-violet-500"
+            : "text-opacity-50 border-violet-800"
+        } hover:bg-violet-600`}
+        onClick={() => onTabChange(ActiveTab.MyBets)}
+      >
+        Bets
+      </button>
+      <button
+        className={`text-white border border-violet-500 rounded px-6 py-2 ${
+          activeTab === ActiveTab.MyTransactions
+            ? "bg-violet-500"
+            : "text-opacity-50 border-violet-800"
+        } hover:bg-violet-600`}
+        onClick={() => onTabChange(ActiveTab.MyTransactions)}
+      >
+        Transactions
+      </button>
+    </div>
+  );
 
   return (
     <div className="w-full flex flex-col gap-2 items-center">
-      <div className="w-full flex justify-end gap-2">
-        <button
-          className={`text-white border border-violet-500 rounded px-6 py-2 ${
-            activeTab === "myBets"
-              ? "bg-violet-500"
-              : "text-opacity-50 border-violet-800"
-          } hover:bg-violet-600`}
-          onClick={() => {
-            onTabChange(ActiveTab.MyBets);
-          }}
-        >
-          Bets
-        </button>
-        <button
-          className={`text-white border border-violet-500 rounded px-6 py-2  ${
-            activeTab === "myTransactions"
-              ? "bg-violet-500"
-              : "text-opacity-50 border-violet-800 "
-          } hover:bg-violet-600`}
-          onClick={() => {
-            onTabChange(ActiveTab.MyTransactions);
-          }}
-        >
-          Transactions
-        </button>
+      <div className="w-full flex justify-between items-center gap-4">
+        <Filter
+          activeTab={activeTab}
+          onChange={handleFilterChange}
+          filters={filters}
+        />
+        {renderTabs(activeTab, setActiveTab)} {/* Use setActiveTab here */}
       </div>
 
-      {activeTab === "myBets" && <MyBets filters={filters} />}
-      {activeTab === "myTransactions" && <MyTransactions filters={filters} />}
+      {activeTab === ActiveTab.MyBets && <MyBets filters={filters} />}
+      {activeTab === ActiveTab.MyTransactions && (
+        <MyTransactions filters={filters} />
+      )}
     </div>
   );
 };
