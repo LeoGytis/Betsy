@@ -6,7 +6,7 @@
   html {
     --background: #141414;
     --foreground: #ededed;
-    --color-primary: #5b21b6;
+    --color-textPrimary: #8b5cf6;
     --color-secondary: #a8cf1b;
     --color-border: #5b21b6;
   }
@@ -16,10 +16,15 @@
 html[data-theme="light"] {
   --background: #ffffff;
   --foreground: #171717;
-  --color-primary: #6d3bbd;
+  --color-textPrimary: #ee6312;
   --color-secondary: #a8cf1b;
-  --color-border: #6e6fa6;
+  --color-border: #4548ff;
 }
+
+/* --blue1: #2e31db; */
+/* --blue2: #4548ff; */
+
+/* violet-500 #8b5cf6  */
 
 body {
   color: var(--foreground);
