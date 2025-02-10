@@ -14,13 +14,10 @@ interface FilterProps {
 
 const Filter: React.FC<FilterProps> = ({ activeTab, filters, onChange }) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
-
   const filterOptions = activeTab === "myBets" ? BetStatus : TransactionType;
-  console.log("🔥 :: activeTab ::", activeTab);
 
-  // Reset selected filter when activeTab changes
   useEffect(() => {
-    setSelectedFilter(null); // Reset selected filter on tab change
+    setSelectedFilter(null);
   }, [activeTab]);
 
   const handleButtonClick = (value: string) => {

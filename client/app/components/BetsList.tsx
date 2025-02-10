@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { FaDice } from "react-icons/fa6";
 import { deleteBet, getBetsList } from "../services/bettingService";
 import { BetStatus, ErrorResponse, statusColor } from "../utils/constants";
 import { formatDate } from "../utils/utils";
-
-import { FaDice } from "react-icons/fa6";
 
 interface BetProps {
   id: string;
@@ -13,13 +12,17 @@ interface BetProps {
   createdAt: Date;
 }
 
-const MyBets: React.FC = () => {
+interface MyBetsProps {
+  filters: { status?: string };
+}
+
+const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
   const [bets, setBets] = useState<BetProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    getBetsList()
+    getBetsList(filters.status)
       .then((data) => {
         setBets(data);
         setLoading(false);
@@ -44,6 +47,10 @@ const MyBets: React.FC = () => {
       });
   };
 
+  const filteredBets = filters.status
+    ? bets.filter((bet) => bet.status === filters.status)
+    : bets;
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -55,10 +62,10 @@ const MyBets: React.FC = () => {
   return (
     <div className="w-full flex flex-col space-y-4 p-4 border border-violet-800 rounded">
       <h1 className="text-xl font-semibold">My Bets</h1>
-      {bets.length === 0 ? (
+      {filteredBets.length === 0 ? (
         <div>No bets available</div>
       ) : (
-        bets.map((bet) => (
+        filteredBets.map((bet) => (
           <div
             key={bet.id}
             className="relative flex justify-between items-center bg-gray-900 border border-violet-500 rounded p-4"
@@ -74,7 +81,6 @@ const MyBets: React.FC = () => {
                 {bet.status === BetStatus.Win ? <p>€{bet.winAmount}!</p> : null}
               </div>
               <p>Bet: €{bet.amount}</p>
-
               <p>Date: {formatDate(bet.createdAt)}</p>
               <p>ID: {bet.id}</p>
             </div>

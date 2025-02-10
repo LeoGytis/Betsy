@@ -11,13 +11,18 @@ interface TransactionProps {
   createdAt: Date;
 }
 
-const MyTransactions: React.FC = () => {
+interface MyTransactionsProps {
+  filters: { type?: string };
+}
+
+const MyTransactions: React.FC<MyTransactionsProps> = ({ filters }) => {
+  console.log("🔥 :: filterssss ::", filters);
   const [transactions, setTransactions] = useState<TransactionProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    getMyTransactions()
+    getMyTransactions(filters.type)
       .then((data) => {
         setTransactions(data);
         setLoading(false);
@@ -26,7 +31,7 @@ const MyTransactions: React.FC = () => {
         setError(error.message);
         setLoading(false);
       });
-  }, []);
+  }, [filters.type]);
 
   if (loading) {
     return <div>Loading...</div>;

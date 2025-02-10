@@ -1,19 +1,19 @@
 import apiRequest from "./apiService";
 
 export const getMyTransactions = async (
-  status?: string,
-  betId?: string,
+  type?: string,
+  id?: string,
   page: number = 1,
   limit: number = 100
 ) => {
   let url = `/my-transactions?page=${page}&limit=${limit}`;
 
-  if (status) {
-    url += `&status=${status}`;
+  if (type) {
+    url += `&type=${type}`;
   }
 
-  if (betId) {
-    url += `&id=${betId}`;
+  if (id) {
+    url += `&id=${id}`;
   }
 
   const data = await apiRequest(url);

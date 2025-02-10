@@ -51,11 +51,8 @@ const ListView: React.FC<ListViewProps> = ({
         </button>
       </div>
 
-      {activeTab === "myBets" && <MyBets />}
-      {activeTab === "myTransactions" && <MyTransactions />}
-
-      {/* {activeTab === "myBets" && <MyBets filters={appliedFilters} />} */}
-      {/* {activeTab === "myTransactions" && <MyTransactions filters={appliedFilters} />} */}
+      {activeTab === "myBets" && <MyBets filters={filters} />}
+      {activeTab === "myTransactions" && <MyTransactions filters={filters} />}
     </div>
   );
 };
