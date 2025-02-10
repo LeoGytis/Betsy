@@ -85,7 +85,7 @@ const Login = () => {
 
         <button
           type="submit"
-          className="w-full  bg-primary rounded px-4 py-2 mt-6"
+          className="w-full  bg-secondary rounded px-4 py-2 mt-6"
           disabled={loading}
         >
           {loading ? "Logging in..." : "Login"}

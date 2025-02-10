@@ -64,7 +64,7 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
         filteredBets.map((bet) => (
           <div
             key={bet.id}
-            className="relative flex justify-between items-center bg-gray-900 border border-primary rounded p-4"
+            className="relative flex justify-between items-center bg-secondary border border-primary rounded p-4"
           >
             <div className="flex flex-col gap-2">
               <div

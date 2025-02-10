@@ -41,7 +41,7 @@ const MyTransactions: React.FC<MyTransactionsProps> = ({ filters }) => {
         transactions.map((transaction) => (
           <div
             key={transaction.id}
-            className="w-full flex justify-between items-center bg-gray-900 border border-primary rounded p-4"
+            className="w-full flex justify-between items-center bg-secondary border border-primary rounded p-4"
           >
             <div className="flex flex-col gap-2">
               <span
