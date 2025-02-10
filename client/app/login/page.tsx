@@ -27,9 +27,7 @@ const Login = () => {
     setMessage("");
     loginUser(formData)
       .then((res) => {
-        console.log("🔥 :: res ::", res);
         if (res.balance) {
-          console.log("🔥 :: res.balance ::", res.balance);
           setBalance(res.balance);
         }
         setMessage("Welcome to Betsy!");
@@ -44,12 +42,14 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto text-violet-500 border  rounded py-10 px-24">
+    <div className="max-w-lg mx-auto border rounded py-10 px-24">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-4"
       >
-        <h2 className="text-center text-xl font-bold mb-4">Login</h2>
+        <h2 className="text-center text-violet-500 text-xl font-bold mb-4">
+          Login
+        </h2>
 
         <div>
           <label htmlFor="email" className="block text-sm">
@@ -85,7 +85,7 @@ const Login = () => {
 
         <button
           type="submit"
-          className="w-full  bg-violet-500 text-white rounded px-4 py-2 mt-6"
+          className="w-full  bg-violet-500 rounded px-4 py-2 mt-6"
           disabled={loading}
         >
           {loading ? "Logging in..." : "Login"}

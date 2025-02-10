@@ -42,7 +42,7 @@ const BetForm = () => {
     <div className="sticky top-4 h-fit flex justify-center items-center border  rounded p-6">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full flex flex-col gap-6 justify-center items-center text-black"
+        className="w-full flex flex-col gap-6 justify-center items-center"
       >
         <h2 className="text-center text-xl font-sembold text-violet-500">
           Place your bet
@@ -60,7 +60,7 @@ const BetForm = () => {
 
         <button
           type="submit"
-          className="w-1/2 px-4 py-2 bg-violet-800 text-white rounded"
+          className="w-1/2 text px-4 py-2 bg-violet-800 hover:text-white rounded"
           disabled={loading}
         >
           BET
