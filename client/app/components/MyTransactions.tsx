@@ -40,7 +40,11 @@ const MyTransactions: React.FC<MyTransactionsProps> = ({ filters }) => {
   }
 
   if (transactions.length === 0) {
-    return <div>No transactions available</div>;
+    return (
+      <span className="text-xl text-primary mt-10">
+        No transactions to show
+      </span>
+    );
   }
 
   return (

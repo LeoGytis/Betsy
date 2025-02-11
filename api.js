@@ -115,14 +115,12 @@ app.post("/login", (req, res) => {
 });
 
 app.get("/initialize-update", (req, res) => {
-  console.log("🔥 :: res ::");
   const { id } = req.query;
 
   const player = players.find((player) => player.id === id);
 
   if (player) {
-    console.log("🔥 :: player ::", player);
-    sendPlayerUpdate(player); // Send the initial update
+    sendPlayerUpdate(player);
     return res.status(200).json({ message: "Player balance initialized" });
   }
 

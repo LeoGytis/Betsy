@@ -11,7 +11,10 @@ export const getUserName = (): string | null => {
   return token && userName ? userName : null;
 };
 
-export const formatAmount = (amount: number) => {
+export const formatAmount = (amount: number | null) => {
+  if (amount === null) {
+    return "";
+  }
   return new Intl.NumberFormat("en-IE", {
     style: "currency",
     currency: "EUR",

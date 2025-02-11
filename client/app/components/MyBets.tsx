@@ -58,7 +58,7 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
   }
 
   if (bets.length === 0) {
-    return <div>No bets to show</div>;
+    return <span className="text-xl text-primary mt-10">No bets to show</span>;
   }
 
   return (
