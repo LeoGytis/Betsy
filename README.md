@@ -149,6 +149,7 @@ http://localhost:3000/docs
   - React Icons
   - React Paginate
   - Zod
+  - Tailwind
 
 ## Notes
 
