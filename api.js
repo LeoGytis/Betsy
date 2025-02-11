@@ -8,10 +8,10 @@ const WebSocket = require("ws");
 
 const app = express();
 const port = 3000;
+const wsPort = 3003;
 
-// Create an HTTP server and attach WebSocket
-const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
+// Create server and attach WebSocket
+const wss = new WebSocket.Server({ port: wsPort });
 
 // Enable CORS for all origins
 app.use(cors());
@@ -19,16 +19,35 @@ app.use(express.json());
 
 const players = [];
 
+const clients = new Map();
+
 // WebSocket connection handler
 wss.on("connection", (ws) => {
-  console.log("New client connected");
+  console.log("New WebSocket connection");
 
+  // Handle messages from clients
   ws.on("message", (message) => {
-    console.log(`Received: ${message}`);
+    try {
+      const data = JSON.parse(message);
+      if (data.type === "register_player" && data.id) {
+        clients.set(data.id, ws); // Store WebSocket connection with player ID
+        console.log(`Player registered with ID: ${data.id}`);
+      }
+    } catch (error) {
+      console.error("Error processing message", error);
+    }
   });
 
+  // Handle client disconnection
   ws.on("close", () => {
-    console.log("Client disconnected");
+    // Find and remove client by WebSocket instance
+    for (const [id, client] of clients.entries()) {
+      if (client === ws) {
+        clients.delete(id);
+        console.log(`Client with ID ${id} disconnected`);
+        break;
+      }
+    }
   });
 });
 
@@ -146,6 +165,8 @@ app.post("/bet", (req, res) => {
     createdAt: new Date(),
     winAmount: isWin ? amount * 2 : null,
   });
+
+  sendPlayerUpdate(player);
 
   res.json({
     transactionId: betTransactionId,

@@ -2,9 +2,11 @@
 import { useRouter } from "next/navigation";
 import { GiRollingDices } from "react-icons/gi";
 import { useBalance } from "../hooks/useBalance";
+import useWebSocket from "../hooks/useWebSocket";
 import { formatAmount } from "../utils/utils";
 import BetForm from "./BetForm";
 import ThemeSwitch from "./ThemeSwitch";
+
 interface NavBarProps {
   userName?: string | null;
 }
@@ -12,6 +14,9 @@ interface NavBarProps {
 const NavBar: React.FC<NavBarProps> = ({ userName }) => {
   const router = useRouter();
   const { balance } = useBalance();
+  const playerId = localStorage.getItem("playerId");
+  console.log("🔥 :: playerId ::", playerId);
+  const playerBalance = useWebSocket(playerId);
 
   return (
     <div className="sticky top-0 lg:relative flex flex-col lg:flex-row justify-between items-center gap-2 text-primary font-medium border rounded bg-secondary p-4">
@@ -25,6 +30,8 @@ const NavBar: React.FC<NavBarProps> = ({ userName }) => {
             <span className="hidden lg:block text-3xl">Betsy</span>
           </div>
           <div>{formatAmount(balance)}</div>
+
+          <p>Player Balance: {playerBalance} EUR</p>
           {!userName ? (
             <div className="flex gap-2 text-lg text-primary">
               <button

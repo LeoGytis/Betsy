@@ -47,6 +47,7 @@ export const loginUser = ({
     .then((data) => {
       localStorage.setItem("token", data.accessToken);
       localStorage.setItem("userName", data.name);
+      localStorage.setItem("playerId", data.id);
       return data;
     })
     .catch((error: ErrorResponse) => {

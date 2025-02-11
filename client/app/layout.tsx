@@ -5,6 +5,7 @@ import { BalanceProvider } from "./hooks/useBalance";
 import "./styles/globals.css";
 
 const font = Quicksand({
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
