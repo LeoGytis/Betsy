@@ -139,6 +139,7 @@ http://localhost:3000/docs
 
   - Node.js
   - Express.js
+  - Websocket
   - Faker.js
   - Swagger
 
@@ -161,7 +162,7 @@ http://localhost:3000/docs
 
 ### State Management & API Handling:
 
-- Integrated react-query to manage balance state across the project
+- Integrated WebSocket connection to listen for balance updates from the server.
 - apiService to send requests with jwtToken for reuse in all API calls
 - authService, bettingService, and transactionsService for handling API requests
 
