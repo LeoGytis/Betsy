@@ -69,7 +69,7 @@ const MyTransactions: React.FC<MyTransactionsProps> = ({ filters }) => {
         pageCount={totalPages}
         onPageChange={(selected) => setCurrentPage(selected.selected)}
         containerClassName={"self-center flex gap-3 text-lg text-primary mt-2"}
-        activeClassName={"border-b-2 bg-primary text-secondary px-2 rounded"}
+        activeClassName={"bg-primary text-secondary px-2 rounded"}
         pageClassName={"text-primary"}
         previousLabel={<span>{"<"}</span>}
         nextLabel={<span>{">"}</span>}
