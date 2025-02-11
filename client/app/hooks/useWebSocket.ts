@@ -7,7 +7,6 @@ interface PlayerUpdate {
 }
 
 const useWebSocket = (playerId: string | null): number | null => {
-  console.log("🔥 :: playerId WS ::", playerId);
   const [balance, setBalance] = useState<number | null>(null);
 
   useEffect(() => {
@@ -31,7 +30,6 @@ const useWebSocket = (playerId: string | null): number | null => {
       console.log("WebSocket Disconnected");
     };
 
-    // Cleanup the WebSocket connection when the component unmounts or playerId changes
     return () => {
       socket.close();
     };

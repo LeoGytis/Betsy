@@ -25,34 +25,30 @@ const clients = new Map();
 wss.on("connection", (ws) => {
   console.log("New WebSocket connection");
 
-  // Handle messages from clients
+  let playerId = null;
+
   ws.on("message", (message) => {
     try {
       const data = JSON.parse(message);
       if (data.type === "register_player" && data.id) {
-        clients.set(data.id, ws); // Store WebSocket connection with player ID
-        console.log(`Player registered with ID: ${data.id}`);
+        playerId = data.id;
+        clients.set(playerId, ws);
+        console.log(`Player registered with ID: ${playerId}`);
       }
     } catch (error) {
       console.error("Error processing message", error);
     }
   });
 
-  // Handle client disconnection
   ws.on("close", () => {
-    // Find and remove client by WebSocket instance
-    for (const [id, client] of clients.entries()) {
-      if (client === ws) {
-        clients.delete(id);
-        console.log(`Client with ID ${id} disconnected`);
-        break;
-      }
+    if (playerId) {
+      clients.delete(playerId);
+      console.log(`Client with ID ${playerId} disconnected`);
     }
   });
 });
 
-// Helper function to send updates to a specific player
-function sendPlayerUpdate(player) {
+const sendPlayerUpdate = (player) => {
   wss.clients.forEach((client) => {
     if (client.readyState === WebSocket.OPEN) {
       client.send(
@@ -64,7 +60,7 @@ function sendPlayerUpdate(player) {
       );
     }
   });
-}
+};
 
 app.post("/register", (req, res) => {
   const { name, email, password, confirmPassword } = req.body;
