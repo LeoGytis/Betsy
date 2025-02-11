@@ -39,32 +39,32 @@ const MyTransactions: React.FC<MyTransactionsProps> = ({ filters }) => {
     return <div>Error: {error}</div>;
   }
 
+  if (transactions.length === 0) {
+    return <div>No transactions available</div>;
+  }
+
   return (
     <div className="w-full flex flex-col gap-4">
-      {transactions.length === 0 ? (
-        <div>No transactions available</div>
-      ) : (
-        transactions.map((transaction) => (
-          <div
-            key={transaction.id}
-            className="w-full flex justify-between items-center bg-secondary border border-primary rounded p-4"
-          >
-            <div className="flex flex-col gap-2">
-              <span
-                className={`w-fit capitalize border rounded p-2 py-0 ${
-                  typeColor[transaction.type]
-                }`}
-              >
-                {transaction.type}
-              </span>
-              <p>Amount: {formatAmount(transaction.amount)}</p>
-              <p>Date: {formatDate(transaction.createdAt)}</p>
-              <p>ID: {transaction.id}</p>
-            </div>
-            <GiCrownedHeart className="w-16 h-16 text-primary text-opacity-40" />
+      {transactions.map((transaction) => (
+        <div
+          key={transaction.id}
+          className="w-full flex justify-between items-center bg-secondary border border-primary rounded p-4"
+        >
+          <div className="flex flex-col gap-2">
+            <span
+              className={`w-fit capitalize border rounded p-2 py-0 ${
+                typeColor[transaction.type]
+              }`}
+            >
+              {transaction.type}
+            </span>
+            <p>Amount: {formatAmount(transaction.amount)}</p>
+            <p>Date: {formatDate(transaction.createdAt)}</p>
+            <p>ID: {transaction.id}</p>
           </div>
-        ))
-      )}
+          <GiCrownedHeart className="w-16 h-16 text-primary text-opacity-40" />
+        </div>
+      ))}
       <ReactPaginate
         pageCount={totalPages}
         onPageChange={(selected) => setCurrentPage(selected.selected)}
