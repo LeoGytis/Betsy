@@ -23,7 +23,7 @@ const ListView: React.FC = () => {
     <div className="flex gap-2">
       <button
         className={`border rounded hover:bg-secondary px-6 py-2 ${
-          activeTab === ActiveTab.MyBets ? "bg-primary" : "opacity-80"
+          activeTab === ActiveTab.MyBets ? "bg-primary" : "bg-background"
         }`}
         onClick={() => onTabChange(ActiveTab.MyBets)}
       >
@@ -31,7 +31,9 @@ const ListView: React.FC = () => {
       </button>
       <button
         className={`border rounded hover:bg-secondary px-6 py-2 ${
-          activeTab === ActiveTab.MyTransactions ? "bg-primary" : "opacity-80"
+          activeTab === ActiveTab.MyTransactions
+            ? "bg-primary"
+            : "bg-background"
         } `}
         onClick={() => onTabChange(ActiveTab.MyTransactions)}
       >

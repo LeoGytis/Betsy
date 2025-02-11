@@ -31,7 +31,9 @@ const HomePage: React.FC = () => {
       <NavBar userName={userName} />
       {userName ? (
         <div className="w-full flex flex-col lg:flex-row gap-6 mt-6">
-          <BetForm />
+          <div className="hidden lg:flex sticky top-40 lg:top-4 w-full lg:w-1/3 h-fit self-center lg:self-start justify-center items-center border rounded bg-secondary p-4 lg:p-6">
+            <BetForm />
+          </div>
           <ListView />
         </div>
       ) : (
