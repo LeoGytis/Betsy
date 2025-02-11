@@ -180,7 +180,7 @@ http://localhost:3000/docs
 
 - ListView component to toggle between My Bets and My Transactions lists
 - Filter section in ListView to filter by status or type, depending on the active list
-- Color enums used for status/type coloring
+- Predefined color mappings used for status/type coloring
 
 ## Notes
 
