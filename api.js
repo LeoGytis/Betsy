@@ -114,6 +114,21 @@ app.post("/login", (req, res) => {
   });
 });
 
+app.get("/initialize-update", (req, res) => {
+  console.log("🔥 :: res ::");
+  const { id } = req.query;
+
+  const player = players.find((player) => player.id === id);
+
+  if (player) {
+    console.log("🔥 :: player ::", player);
+    sendPlayerUpdate(player); // Send the initial update
+    return res.status(200).json({ message: "Player balance initialized" });
+  }
+
+  return res.status(404).json({ message: "Player not found" });
+});
+
 app.post("/bet", (req, res) => {
   const { amount } = req.body;
   const authorization = req.headers.authorization;

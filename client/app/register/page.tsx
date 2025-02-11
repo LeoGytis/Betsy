@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { registerUser } from "../services/authService";
+import { loginUser, registerUser } from "../services/authService";
 import { ErrorResponse, RegisterUserProps } from "../utils/constants";
 import { registerSchema } from "../utils/validationSchemas";
 
@@ -27,7 +27,7 @@ const RegisterForm: React.FC = () => {
       .then(() => {
         setMessage("Successfully registered a new user.");
         // for faster dev login
-        // loginUser({ email: formData.email, password: formData.password });
+        loginUser({ email: formData.email, password: formData.password });
         router.push("/");
       })
       .catch((error: ErrorResponse) => {

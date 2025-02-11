@@ -1,41 +1,44 @@
 import { useEffect, useState } from "react";
 
-interface PlayerUpdate {
-  type: "balance_update";
-  id: string;
-  balance: number;
-}
-
-const useWebSocket = (playerId: string | null): number | null => {
-  const [balance, setBalance] = useState<number | null>(null);
+const useWebSocket = () => {
+  const [playerBalance, setPlayerBalance] = useState<number | null>(null);
 
   useEffect(() => {
-    if (!playerId) return;
-
     const socket = new WebSocket("ws://localhost:3003");
 
     socket.onopen = () => {
-      console.log("WebSocket Connected");
-      socket.send(JSON.stringify({ type: "register_player", id: playerId }));
-    };
+      console.log("WebSocket connected");
 
-    socket.onmessage = (event: MessageEvent) => {
-      const data: PlayerUpdate = JSON.parse(event.data);
-      if (data.type === "balance_update" && data.id === playerId) {
-        setBalance(data.balance);
+      const playerId = localStorage.getItem("playerId");
+      if (playerId) {
+        socket.send(JSON.stringify({ type: "register_player", id: playerId }));
+
+        fetchBalanceUpdate(playerId);
       }
     };
 
-    socket.onclose = () => {
-      console.log("WebSocket Disconnected");
+    socket.onmessage = (message) => {
+      const data = JSON.parse(message.data);
+      if (data.type === "balance_update") {
+        setPlayerBalance(data.balance);
+      }
     };
 
     return () => {
       socket.close();
     };
-  }, [playerId]);
+  }, []);
 
-  return balance;
+  const fetchBalanceUpdate = async (playerId: string | null) => {
+    if (!playerId) return;
+    try {
+      await fetch(`http://localhost:3000/initialize-update?id=${playerId}`);
+    } catch (error) {
+      console.error("Error initializing balance update:", error);
+    }
+  };
+
+  return playerBalance;
 };
 
 export default useWebSocket;

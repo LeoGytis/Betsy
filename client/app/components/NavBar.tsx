@@ -14,9 +14,17 @@ interface NavBarProps {
 const NavBar: React.FC<NavBarProps> = ({ userName }) => {
   const router = useRouter();
   const { balance } = useBalance();
-  const playerId = localStorage.getItem("playerId");
-  console.log("🔥 :: playerId ::", playerId);
-  const playerBalance = useWebSocket(playerId);
+  const playerBalance = useWebSocket();
+
+  // // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // const initializeBalanceUpdate = async (playerId: any) => {
+  //   await fetch(`http://localhost:3000/initialize-update?id=${playerId}`);
+  // };
+  // console.log("🔥 :: initializeBalanceUpdate ::", initializeBalanceUpdate);
+  // useEffect(() => {
+  //   const playerId = localStorage.getItem("playerId");
+  //   initializeBalanceUpdate(playerId);
+  // }, []);
 
   return (
     <div className="sticky top-0 lg:relative flex flex-col lg:flex-row justify-between items-center gap-2 text-primary font-medium border rounded bg-secondary p-4">
