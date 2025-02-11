@@ -3,14 +3,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useBalance } from "../hooks/useBalance";
 import { loginUser } from "../services/authService";
 import { ErrorResponse, UserLoginProps } from "../utils/constants";
 import { loginSchema } from "../utils/validationSchemas";
 
 const Login = () => {
   const router = useRouter();
-  const { setBalance } = useBalance();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -26,10 +24,7 @@ const Login = () => {
     setLoading(true);
     setMessage("");
     loginUser(formData)
-      .then((res) => {
-        if (res.balance) {
-          setBalance(res.balance);
-        }
+      .then(() => {
         setMessage("Welcome to Betsy!");
         router.push("/");
       })

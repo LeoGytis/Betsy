@@ -7,6 +7,7 @@ const BalanceContext = createContext<{
   setBalance: (balance: number) => void;
 } | null>(null);
 
+// Legacy code
 export const useBalance = () => {
   const context = useContext(BalanceContext);
   if (!context) {
