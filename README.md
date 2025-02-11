@@ -30,6 +30,18 @@ This is a RESTful API developed with Express.js that simulates the management of
    npm install
    ```
 
+4. Navigate to the client directory:
+
+   ```bash
+   cd client
+   ```
+
+5. Install frontend dependencies using npm:
+
+   ```bash
+   npm install
+   ```
+
 ## Running the API
 
 1. To run the API in a local environment:
@@ -39,6 +51,14 @@ This is a RESTful API developed with Express.js that simulates the management of
    ```
 
 The server will be available at: http://localhost:3000.
+
+2. Run the frontend in a local environment:
+
+   ```bash
+   npm run dev
+   ```
+
+The frontend will be available at: http://localhost:3001.
 
 ## Swagger Documentation
 
@@ -115,10 +135,20 @@ http://localhost:3000/docs
 
 ## Technologies Used
 
-- Node.js
-- Express.js
-- Faker.js
-- Swagger
+- Backend
+
+  - Node.js
+  - Express.js
+  - Faker.js
+  - Swagger
+
+- Frontend
+  - Next.js
+  - React
+  - React Hook Form
+  - React Icons
+  - React Paginate
+  - Zod
 
 ## Notes
 
