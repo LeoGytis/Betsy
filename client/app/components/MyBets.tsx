@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaDice } from "react-icons/fa6";
 import ReactPaginate from "react-paginate";
+import useWebSocket from "../hooks/useWebSocket";
 import { deleteBet, getBetsList } from "../services/bettingService";
 import {
   BetProps,
@@ -15,6 +16,7 @@ interface MyBetsProps {
 }
 
 const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
+  const balance = useWebSocket();
   const [bets, setBets] = useState<BetProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -33,7 +35,7 @@ const MyBets: React.FC<MyBetsProps> = ({ filters }) => {
         setError(error.message);
         setLoading(false);
       });
-  }, [filters, currentPage]);
+  }, [filters, currentPage, balance]);
 
   const handleDelete = (betId: string) => {
     deleteBet(betId)

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GiCrownedHeart } from "react-icons/gi";
 import ReactPaginate from "react-paginate";
+import useWebSocket from "../hooks/useWebSocket";
 import { getMyTransactions } from "../services/transiactionsService";
 import { ErrorResponse, TransactionProps, typeColor } from "../utils/constants";
 import { formatAmount, formatDate } from "../utils/utils";
@@ -10,6 +11,7 @@ interface MyTransactionsProps {
 }
 
 const MyTransactions: React.FC<MyTransactionsProps> = ({ filters }) => {
+  const balance = useWebSocket();
   const [transactions, setTransactions] = useState<TransactionProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -29,7 +31,7 @@ const MyTransactions: React.FC<MyTransactionsProps> = ({ filters }) => {
         setError(error.message);
         setLoading(false);
       });
-  }, [filters, currentPage]);
+  }, [filters, currentPage, balance]);
 
   if (loading) {
     return <div>Loading...</div>;

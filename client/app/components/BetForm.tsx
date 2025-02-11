@@ -23,11 +23,8 @@ const BetForm = () => {
     setLoading(true);
     setMessage("");
     placeBet(amount)
-      .then((res) => {
+      .then(() => {
         setMessage(`You have made a bet of ${formatAmount(amount)}`);
-        if (res.balance) {
-          setBalance(res.balance);
-        }
       })
       .catch((error: ErrorResponse) => {
         setMessage(error.message);
