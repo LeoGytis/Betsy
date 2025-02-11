@@ -1,10 +1,10 @@
 "use client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Quicksand } from "next/font/google";
+import { Roboto } from "next/font/google";
 import { BalanceProvider } from "./hooks/useBalance";
 import "./styles/globals.css";
 
-const font = Quicksand({
+const font = Roboto({
   subsets: ["latin"],
 });
 

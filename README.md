@@ -151,6 +151,37 @@ http://localhost:3000/docs
   - Zod
   - Tailwind
 
+## Implemented Features
+
+### Authentication:
+
+- Register and login forms
+- LocalStorage used to save token and userName
+- LocalStorage used for user authentication checks
+
+### State Management & API Handling:
+
+- Integrated react-query to manage balance state across the project
+- apiService to send requests with jwtToken for reuse in all API calls
+- authService, bettingService, and transactionsService for handling API requests
+
+### Forms & Validation:
+
+- Implemented react-hook-form with zod for validation
+
+### UI & Theming:
+
+- Reusable ThemeSwitch component for toggling between light and dark themes
+- Navbar displaying register/login buttons, userName, and balance view
+- Tailwind CSS used for faster development
+- Betting & Transactions:
+
+### BetForm component for placing bets
+
+- ListView component to toggle between My Bets and My Transactions lists
+- Filter section in ListView to filter by status or type, depending on the active list
+- Color enums used for status/type coloring
+
 ## Notes
 
 This API is a mock created specifically to assist and simplify the development of front-end testing. Feel free to make any modifications or improvements as needed.
