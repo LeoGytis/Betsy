@@ -1,10 +1,12 @@
-import { BASE_URL, ErrorResponse } from "../utils/constants";
+import { ErrorResponse } from "../utils/constants";
 
 interface ApiRequestOptions {
   method?: string;
   headers?: Record<string, string>;
   body?: BodyInit | null;
 }
+
+const BASE_URL = "http://localhost:3000";
 
 const getJwtToken = (): string | null => {
   return localStorage.getItem("token");
@@ -30,8 +32,6 @@ const apiRequest = async (
 
   if (!response.ok) {
     const errorData = await response.json();
-    // throw new Error(errorData.message || "API request failed");
-    // throw new Error(`Status: ${errorData.status}, Message: ${errorData.message || "API request failed"}`);
     throw {
       status: response.status,
       message: errorData.message || "API request failed",
