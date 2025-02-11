@@ -186,3 +186,5 @@ http://localhost:3000/docs
 ## Notes
 
 This API is a mock created specifically to assist and simplify the development of front-end testing. Feel free to make any modifications or improvements as needed.
+
+## Big THANKS for interesting homework assignment!
