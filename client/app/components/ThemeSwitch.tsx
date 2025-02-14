@@ -1,14 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/switch.css";
 
 const ThemeSwitch = () => {
-  const [isOn, setIsOn] = useState(false);
+  const getInitialTheme = () => {
+    const userPrefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    return userPrefersDark ? "dark" : "light";
+  };
+
+  const [theme, setTheme] = useState<"dark" | "light">(getInitialTheme);
+
+  useEffect(() => {
+    document.querySelector("html")?.setAttribute("data-theme", theme);
+  }, [theme]);
 
   const handleToggle = () => {
-    setIsOn((prevIsOn) => !prevIsOn);
-    document
-      .querySelector("html")
-      ?.setAttribute("data-theme", isOn ? "" : "light");
+    setTheme((prevTheme) => {
+      const newTheme = prevTheme === "dark" ? "light" : "dark";
+      document.querySelector("html")?.setAttribute("data-theme", newTheme);
+      return newTheme;
+    });
   };
 
   return (
@@ -18,6 +30,7 @@ const ThemeSwitch = () => {
         className="switch-checkbox"
         id="switch"
         type="checkbox"
+        checked={theme === "dark"}
       />
       <label className="switch-label" htmlFor={`switch`}>
         <span className="switch-button" />

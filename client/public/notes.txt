@@ -1,0 +1,5 @@
+- betForm on mobile phone not logged in
+- websocket set on token not user id
+- api.js fix logic for cancel bets / wait to gamele it out
+- toaster for messages / error messages for form filling only
+- theme switch going out of borders when looong click on it
