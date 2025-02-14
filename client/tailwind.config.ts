@@ -12,6 +12,7 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: "var(--color-primary)",
+        primary_dark: "var(--color-border)",
         secondary: "var(--color-secondary)",
       },
       borderColor: {

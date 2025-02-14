@@ -37,9 +37,9 @@ const HomePage: React.FC = () => {
           <ListView />
         </div>
       ) : (
-        <div className="lg:h-96 lg:w-96 mx-auto flex flex-col gap-8 justify-center items-center border-2 mt-8 p-2">
-          <GirlIcon className="text-primary" />
-          <h1 className="text-3xl lg:text-6xl font-bold text-primary whitespace-nowrap">
+        <div className="lg:h-96 lg:w-96 mx-auto flex flex-col justify-center items-center  gap-8 border-2 animate-pulse-box mt-8 p-2">
+          <GirlIcon className="text-primary_dark animate-pulse-custom" />
+          <h1 className="text-5xl lg:text-6xl font-bold text-background whitespace-nowrap animate-pulse-text">
             WELCOME TO BETSY!
           </h1>
         </div>

@@ -33,3 +33,35 @@ body {
 input {
   color: #111;
 }
+
+@keyframes pulseBoxShadow {
+  0% {
+    box-shadow: 0 0 5px var(--color-border);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--color-border), 0 0 10px var(--color-border);
+  }
+  100% {
+    box-shadow: 0 0 5px var(--color-border);
+  }
+}
+.animate-pulse-box {
+  animation: pulseBoxShadow 1s infinite alternate;
+}
+
+@keyframes pulseShadow {
+  0% {
+    text-shadow: 0 5px 5px var(--color-border);
+  }
+  50% {
+    text-shadow: 0 10px 20px var(--color-border),
+      0 20px 10px var(--color-border);
+  }
+  100% {
+    text-shadow: 0 5px 5px var(--color-border);
+  }
+}
+
+.animate-pulse-text {
+  animation: pulseShadow 1s infinite alternate;
+}
